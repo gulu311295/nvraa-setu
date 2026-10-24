@@ -1,0 +1,176 @@
+{
+  "stats": {
+    "mentorsOnboarded": 12,
+    "studentsHelped": 47,
+    "opportunitiesShared": 23,
+    "introductionsMade": 31
+  },
+  "mentors": [
+    {
+      "id": "m1",
+      "name": "Dr. Priya Sharma",
+      "batch": "2004",
+      "field": "Medicine",
+      "domain": "Healthcare & Research",
+      "location": "Delhi NCR",
+      "languages": ["Hindi", "English"],
+      "availability": "Weekends",
+      "bio": "AIIMS graduate; guides students on NEET PG and public health careers.",
+      "topics": ["Medical entrance", "Specialisation choices", "Rural healthcare"]
+    },
+    {
+      "id": "m2",
+      "name": "Arun Kumar Singh",
+      "batch": "2008",
+      "field": "Civil Services",
+      "domain": "UPSC & Public Administration",
+      "location": "Patna",
+      "languages": ["Hindi", "English", "Magahi"],
+      "availability": "Evenings",
+      "bio": "IAS officer (2015 batch); shares strategy for Prelims, Mains and interview.",
+      "topics": ["UPSC roadmap", "Optional subject", "Answer writing"]
+    },
+    {
+      "id": "m3",
+      "name": "Neha Verma",
+      "batch": "2012",
+      "field": "Engineering",
+      "domain": "Software & Product",
+      "location": "Bengaluru",
+      "languages": ["Hindi", "English"],
+      "availability": "Flexible",
+      "bio": "Senior engineer at a product company; mentors on CS careers and internships.",
+      "topics": ["DSA prep", "Internships", "Campus to industry"]
+    },
+    {
+      "id": "m4",
+      "name": "Rajesh Yadav",
+      "batch": "2010",
+      "field": "Banking & SSC",
+      "domain": "Government Exams",
+      "location": "Mumbai",
+      "languages": ["Hindi", "English"],
+      "availability": "Saturdays",
+      "bio": "Bank PO turned trainer; helps with SSC CGL, IBPS and interview prep.",
+      "topics": ["Quant shortcuts", "Interview", "Job notifications"]
+    },
+    {
+      "id": "m5",
+      "name": "Anita Kumari",
+      "batch": "2015",
+      "field": "Law",
+      "domain": "Legal & Judiciary",
+      "location": "Ranchi",
+      "languages": ["Hindi", "English"],
+      "availability": "By appointment",
+      "bio": "Practising advocate; guides CLAT, LLB and judicial services aspirants.",
+      "topics": ["CLAT", "Internships in law firms", "Judiciary exams"]
+    }
+  ],
+  "jobs": [
+    {
+      "id": "j1",
+      "title": "Graduate Trainee — Public Sector Bank",
+      "company": "Regional rural bank (via IBPS)",
+      "location": "Bihar",
+      "type": "Full-time",
+      "eligibility": "Graduate, age as per notification",
+      "skills": ["Reasoning", "Quantitative aptitude", "General awareness"],
+      "deadline": "2026-04-15",
+      "postedBy": "Alumni referral — verified by coordinator",
+      "link": "https://ibps.in",
+      "status": "open"
+    },
+    {
+      "id": "j2",
+      "title": "Software Engineering Intern",
+      "company": "Tech startup (Series B)",
+      "location": "Remote / Bengaluru",
+      "type": "Internship",
+      "eligibility": "B.Tech 2nd–4th year, CS or related",
+      "skills": ["JavaScript", "React", "Git"],
+      "deadline": "2026-03-01",
+      "postedBy": "Neha V. (Batch 2012)",
+      "link": "careers.example.com/intern-2026",
+      "status": "open"
+    },
+    {
+      "id": "j3",
+      "title": "Junior Research Assistant",
+      "company": "ICAR-affiliated lab",
+      "location": "Patna",
+      "type": "Contract",
+      "eligibility": "M.Sc Agriculture / Botany",
+      "skills": ["Field work", "Data entry", "Basic stats"],
+      "deadline": "2026-02-28",
+      "postedBy": "NVRAA coordinator verified",
+      "link": "apply.example.com/icar-jra",
+      "status": "open"
+    },
+    {
+      "id": "j4",
+      "title": "Apprentice — Indian Railways",
+      "company": "Railway recruitment board",
+      "location": "Multiple zones",
+      "type": "Apprenticeship",
+      "eligibility": "ITI / Diploma as per trade",
+      "skills": ["Trade certificate", "Medical fitness"],
+      "deadline": "2026-05-10",
+      "postedBy": "Employer partner listing",
+      "link": "rrb.example.gov.in",
+      "status": "open"
+    },
+    {
+      "id": "j5",
+      "title": "Content & Outreach Volunteer",
+      "company": "NVRAA SETU (student team)",
+      "location": "Remote",
+      "type": "Volunteer",
+      "eligibility": "Class XI–XII or recent pass-out",
+      "skills": ["Writing", "Social media", "Hindi/English"],
+      "deadline": "Rolling",
+      "postedBy": "NVRAA SETU core team",
+      "link": "nvraa-setu.example/ volunteer",
+      "status": "open"
+    }
+  ],
+  "consultationDomains": [
+    {
+      "id": "c1",
+      "name": "Civil Services (UPSC)",
+      "description": "Strategy, resources and interview insights from serving and former officers.",
+      "mentorCount": 3
+    },
+    {
+      "id": "c2",
+      "name": "SSC & Banking",
+      "description": "Tier-wise preparation, mock interviews and notification tracking.",
+      "mentorCount": 2
+    },
+    {
+      "id": "c3",
+      "name": "Defence & Police",
+      "description": "NDA, CDS, state police and CAPF guidance from alumni in uniform.",
+      "mentorCount": 2
+    },
+    {
+      "id": "c4",
+      "name": "Teaching (CTET / State TET)",
+      "description": "Pedagogy papers, demo lessons and posting insights.",
+      "mentorCount": 1
+    },
+    {
+      "id": "c5",
+      "name": "Railways & PSU",
+      "description": "RRB exams, technical trades and PSU graduate trainee routes.",
+      "mentorCount": 2
+    }
+  ],
+  "recentActivity": [
+    { "id": "a1", "type": "introduction", "text": "Class XII student matched with Civil Services mentor (UPSC Prelims stage).", "date": "2026-10-18" },
+    { "id": "a2", "type": "job", "text": "Software intern listing shared with 4 eligible job seekers.", "date": "2026-10-17" },
+    { "id": "a3", "type": "mentorship", "text": "Group session: Engineering careers — 22 students attended.", "date": "2026-10-12" },
+    { "id": "a4", "type": "consultation", "text": "Banking exam roadmap Q&A completed for 3 aspirants.", "date": "2026-10-08" },
+    { "id": "a5", "type": "introduction", "text": "Law aspirant introduced to CLAT mentor (consent confirmed).", "date": "2026-10-05" }
+  ]
+}

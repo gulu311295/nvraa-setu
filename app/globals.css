@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-geist-sans: ui-sans-serif, system-ui, sans-serif;
+  --font-display: Georgia, "Times New Roman", serif;
+}
+
+body {
+  @apply bg-navy-950 text-white antialiased;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(231, 111, 81, 0.15), transparent),
+    radial-gradient(ellipse 60% 40% at 100% 100%, rgba(42, 157, 143, 0.12), transparent);
+  min-height: 100vh;
+}
