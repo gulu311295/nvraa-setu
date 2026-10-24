@@ -22,9 +22,15 @@ npm run dev
 
 Copy `.env.example` to `.env.local` to set secrets locally.
 
+## Repository
+
+**https://github.com/gulu311295/nvraa-setu**
+
+Step-by-step Railway setup: see [DEPLOY.md](./DEPLOY.md).
+
 ## Deploy on Railway
 
-1. Push to GitHub and create a **Railway** project from the repo.
+1. Open the GitHub repo above and create a **Railway** project from it.
 2. Add **PostgreSQL** (Plugins → PostgreSQL). Railway injects `DATABASE_URL` into the web service.
 3. Set variables on the web service:
    - `COORDINATOR_PASSWORD` — shared secret for NVRAA coordinators

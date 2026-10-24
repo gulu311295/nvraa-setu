@@ -1,0 +1,16 @@
+# Optional: add RAILWAY_TOKEN and RAILWAY_SERVICE_ID in GitHub repo secrets, then run manually.
+name: Deploy to Railway
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    container: ghcr.io/railwayapp/cli:latest
+    env:
+      RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Redeploy web service
+        run: railway redeploy --service=${{ secrets.RAILWAY_SERVICE_ID }} --yes
