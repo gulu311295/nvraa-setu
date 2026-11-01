@@ -9,6 +9,7 @@ type Field = {
   type?: "text" | "email" | "textarea" | "select";
   required?: boolean;
   options?: string[];
+  optionGroups?: { label: string; options: string[] }[];
   placeholder?: string;
 };
 
@@ -83,11 +84,21 @@ export function SubmitForm({
                 className="mt-1 w-full rounded-lg border border-white/15 bg-navy-900 px-3 py-2 text-white focus:border-saffron-400 focus:outline-none"
               >
                 <option value="">Select…</option>
-                {(f.options ?? []).map((o) => (
-                  <option key={o} value={o}>
-                    {o}
-                  </option>
-                ))}
+                {f.optionGroups
+                  ? f.optionGroups.map((g) => (
+                      <optgroup key={g.label} label={g.label}>
+                        {g.options.map((o) => (
+                          <option key={o} value={o}>
+                            {o}
+                          </option>
+                        ))}
+                      </optgroup>
+                    ))
+                  : (f.options ?? []).map((o) => (
+                      <option key={o} value={o}>
+                        {o}
+                      </option>
+                    ))}
               </select>
             ) : (
               <input

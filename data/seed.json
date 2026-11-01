@@ -1,6 +1,6 @@
 {
   "stats": {
-    "mentorsOnboarded": 12,
+    "mentorsOnboarded": 18,
     "studentsHelped": 47,
     "opportunitiesShared": 23,
     "introductionsMade": 31
@@ -22,7 +22,7 @@
       "id": "m2",
       "name": "Arun Kumar Singh",
       "batch": "2008",
-      "field": "Civil Services",
+      "field": "Civil Services (UPSC)",
       "domain": "UPSC & Public Administration",
       "location": "Patna",
       "languages": ["Hindi", "English", "Magahi"],
@@ -34,7 +34,7 @@
       "id": "m3",
       "name": "Neha Verma",
       "batch": "2012",
-      "field": "Engineering",
+      "field": "Computer science & IT",
       "domain": "Software & Product",
       "location": "Bengaluru",
       "languages": ["Hindi", "English"],
@@ -58,13 +58,97 @@
       "id": "m5",
       "name": "Anita Kumari",
       "batch": "2015",
-      "field": "Law",
+      "field": "Law & judiciary",
       "domain": "Legal & Judiciary",
       "location": "Ranchi",
       "languages": ["Hindi", "English"],
       "availability": "By appointment",
       "bio": "Practising advocate; guides CLAT, LLB and judicial services aspirants.",
       "topics": ["CLAT", "Internships in law firms", "Judiciary exams"]
+    },
+    {
+      "id": "m6",
+      "name": "Rohit Malhotra",
+      "batch": "2011",
+      "field": "Hotel management",
+      "domain": "Hospitality & Tourism",
+      "location": "Goa",
+      "languages": ["Hindi", "English"],
+      "availability": "Sunday calls",
+      "bio": "Hotel operations manager; mentors on IHMs, culinary vs front office, and cruise/hotel careers.",
+      "topics": ["NCHM-JEE", "Internships", "Abroad hospitality programs"]
+    },
+    {
+      "id": "m7",
+      "name": "Capt. Meera Joshi",
+      "batch": "2009",
+      "field": "Aviation & aerospace",
+      "domain": "Airlines & Ground Operations",
+      "location": "Hyderabad",
+      "languages": ["Hindi", "English"],
+      "availability": "Twice a month",
+      "bio": "Commercial aviation professional; guides on pilot vs AME vs cabin crew and airline ground roles.",
+      "topics": ["DGCA pathways", "Cabin crew selection", "Aviation safety basics"]
+    },
+    {
+      "id": "m8",
+      "name": "Vikram Pandey",
+      "batch": "2013",
+      "field": "Defence (NDA/CDS/AFCAT)",
+      "domain": "Armed Forces",
+      "location": "Pune",
+      "languages": ["Hindi", "English"],
+      "availability": "Weekends",
+      "bio": "Serving officer; helps aspirants choose NDA, CDS, AFCAT and SSB preparation.",
+      "topics": ["SSB interview", "Physical standards", "Service selection"]
+    },
+    {
+      "id": "m9",
+      "name": "Sunita Devi",
+      "batch": "2007",
+      "field": "Teaching (CTET / TET)",
+      "domain": "School Education",
+      "location": "Patna",
+      "languages": ["Hindi", "English"],
+      "availability": "Evenings",
+      "bio": "KVS teacher; supports CTET, state TET and B.Ed choices for stable teaching careers.",
+      "topics": ["Pedagogy papers", "Demo lesson", "Posting preferences"]
+    },
+    {
+      "id": "m10",
+      "name": "Amitabh Roy",
+      "batch": "2014",
+      "field": "Management & MBA",
+      "domain": "Business & Leadership",
+      "location": "Kolkata",
+      "languages": ["Hindi", "English", "Bengali"],
+      "availability": "Flexible",
+      "bio": "MBA from IIM route; guides on CAT, XAT, college selection and rural-first gen MBA journeys.",
+      "topics": ["CAT strategy", "WAT-PI", "Scholarships & loans"]
+    },
+    {
+      "id": "m11",
+      "name": "Kavita Singh",
+      "batch": "2016",
+      "field": "Agriculture & veterinary",
+      "domain": "Agri Sciences",
+      "location": "Samastipur",
+      "languages": ["Hindi", "English"],
+      "availability": "Saturdays",
+      "bio": "Agri extension officer; mentors on B.Sc Agriculture, veterinary entrances and state agri jobs.",
+      "topics": ["ICAR exams", "Field careers", "Higher studies abroad"]
+    },
+    {
+      "id": "m12",
+      "name": "Deepak Kr.",
+      "batch": "2018",
+      "field": "Engineering (core branches)",
+      "domain": "Mechanical & Civil",
+      "location": "Jamshedpur",
+      "languages": ["Hindi", "English"],
+      "availability": "By appointment",
+      "bio": "Plant engineer in steel sector; guides diploma vs B.Tech, GATE and PSU core engineering roles.",
+      "topics": ["GATE", "Campus placement", "Shop floor vs design"]
     }
   ],
   "jobs": [
@@ -132,6 +216,32 @@
       "postedBy": "NVRAA SETU core team",
       "link": "nvraa-setu.example/ volunteer",
       "status": "open"
+    },
+    {
+      "id": "j6",
+      "title": "Management Trainee — Hotel chain",
+      "company": "National hospitality group",
+      "location": "Delhi NCR / Goa rotations",
+      "type": "Full-time",
+      "eligibility": "Hotel management graduate or final year",
+      "skills": ["Customer service", "Operations basics", "English communication"],
+      "deadline": "2026-04-30",
+      "postedBy": "Alumni referral — Rohit M. (Batch 2011)",
+      "link": "careers.example.com/hotel-mt",
+      "status": "open"
+    },
+    {
+      "id": "j7",
+      "title": "Airport Ground Staff — Contract",
+      "company": "Ground handling partner (major airport)",
+      "location": "Patna / Delhi",
+      "type": "Contract",
+      "eligibility": "12th pass, age 18–27, medical fit",
+      "skills": ["Hindi/English", "Shift readiness", "Basic computer"],
+      "deadline": "Rolling",
+      "postedBy": "Employer partner listing",
+      "link": "apply.example.com/ground-staff",
+      "status": "open"
     }
   ],
   "consultationDomains": [
@@ -143,32 +253,64 @@
     },
     {
       "id": "c2",
-      "name": "SSC & Banking",
+      "name": "SSC, Banking & Insurance",
       "description": "Tier-wise preparation, mock interviews and notification tracking.",
-      "mentorCount": 2
+      "mentorCount": 3
     },
     {
       "id": "c3",
-      "name": "Defence & Police",
-      "description": "NDA, CDS, state police and CAPF guidance from alumni in uniform.",
-      "mentorCount": 2
+      "name": "Defence, Police & CAPF",
+      "description": "NDA, CDS, AFCAT, state police and CAPF guidance from alumni in uniform.",
+      "mentorCount": 3
     },
     {
       "id": "c4",
       "name": "Teaching (CTET / State TET)",
       "description": "Pedagogy papers, demo lessons and posting insights.",
-      "mentorCount": 1
+      "mentorCount": 2
     },
     {
       "id": "c5",
-      "name": "Railways & PSU",
-      "description": "RRB exams, technical trades and PSU graduate trainee routes.",
+      "name": "Railways, PSU & Technical Trades",
+      "description": "RRB exams, ITI/diploma trades and PSU graduate trainee routes.",
+      "mentorCount": 2
+    },
+    {
+      "id": "c6",
+      "name": "Hotel Management & Tourism",
+      "description": "NCHM-JEE, IHM choices, internships and hospitality careers in India and abroad.",
+      "mentorCount": 2
+    },
+    {
+      "id": "c7",
+      "name": "Aviation & Aerospace",
+      "description": "Pilot, AME, cabin crew and airline ground operations — eligibility and training paths.",
+      "mentorCount": 2
+    },
+    {
+      "id": "c8",
+      "name": "MBA / CAT & Commerce (CA/CS)",
+      "description": "Management entrances, B-school selection and professional commerce courses.",
+      "mentorCount": 2
+    },
+    {
+      "id": "c9",
+      "name": "Engineering & GATE / PSUs",
+      "description": "Branch selection, GATE prep and core engineering roles in PSUs and industry.",
+      "mentorCount": 3
+    },
+    {
+      "id": "c10",
+      "name": "Medicine & Allied Health",
+      "description": "NEET, nursing, pharmacy and allied health career ladders.",
       "mentorCount": 2
     }
   ],
   "recentActivity": [
     { "id": "a1", "type": "introduction", "text": "Class XII student matched with Civil Services mentor (UPSC Prelims stage).", "date": "2026-10-18" },
     { "id": "a2", "type": "job", "text": "Software intern listing shared with 4 eligible job seekers.", "date": "2026-10-17" },
+    { "id": "a6", "type": "mentorship", "text": "Hotel management aspirant connected for NCHM-JEE and internship guidance.", "date": "2026-10-16" },
+    { "id": "a7", "type": "consultation", "text": "Aviation pathway Q&A — pilot vs AME vs ground staff.", "date": "2026-10-14" },
     { "id": "a3", "type": "mentorship", "text": "Group session: Engineering careers — 22 students attended.", "date": "2026-10-12" },
     { "id": "a4", "type": "consultation", "text": "Banking exam roadmap Q&A completed for 3 aspirants.", "date": "2026-10-08" },
     { "id": "a5", "type": "introduction", "text": "Law aspirant introduced to CLAT mentor (consent confirmed).", "date": "2026-10-05" }

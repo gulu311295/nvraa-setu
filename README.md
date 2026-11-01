@@ -11,16 +11,18 @@ Year-round alumni, mentorship and opportunity network for **JNV Rajgir / NVRAA**
 
 ## Local development
 
+Full checklist: **[LOCAL.md](./LOCAL.md)**
+
 ```bash
 npm install
 npm run dev
 ```
 
-- Site: [http://localhost:3000](http://localhost:3000)
-- Coordinator: [http://localhost:3000/coordinator/login](http://localhost:3000/coordinator/login)
-- Dev password (if `COORDINATOR_PASSWORD` unset): `nvraa-demo`
+Use the URL printed in the terminal (if port 3000 is busy, Next.js picks 3001, 3002, …).
 
-Copy `.env.example` to `.env.local` to set secrets locally.
+- Coordinator: `/coordinator/login`
+- Local password (`.env.local` on your machine): **`setu-local-2026`**
+- Without `.env.local`, dev fallback password: `nvraa-demo`
 
 ## Repository
 

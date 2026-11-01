@@ -1,4 +1,9 @@
 import seed from "@/data/seed.json";
+import {
+  ALL_MENTOR_FIELDS,
+  MENTOR_FILTER_FIELDS,
+  mentorMatchesField,
+} from "@/lib/career-fields";
 
 export type Mentor = (typeof seed.mentors)[number];
 export type Job = (typeof seed.jobs)[number];
@@ -10,10 +15,8 @@ export function getSeedData() {
 }
 
 export function getMentors(field?: string) {
-  if (!field || field === "all") return seed.mentors;
-  return seed.mentors.filter(
-    (m) => m.field.toLowerCase() === field.toLowerCase()
-  );
+  if (!field || field.toLowerCase() === "all") return seed.mentors;
+  return seed.mentors.filter((m) => mentorMatchesField(m.field, field));
 }
 
 export function getJobs(status: "open" | "all" = "open") {
@@ -33,11 +36,5 @@ export function getRecentActivity() {
   return seed.recentActivity;
 }
 
-export const MENTOR_FIELDS = [
-  "All",
-  "Medicine",
-  "Civil Services",
-  "Engineering",
-  "Banking & SSC",
-  "Law",
-] as const;
+export const MENTOR_FIELDS = MENTOR_FILTER_FIELDS;
+export { ALL_MENTOR_FIELDS, CAREER_FIELD_CATEGORIES } from "@/lib/career-fields";

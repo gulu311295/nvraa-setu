@@ -1,8 +1,7 @@
-import Link from "next/link";
+import { FieldCategoryPicker } from "@/components/FieldCategoryPicker";
 import { SubmitForm } from "@/components/SubmitForm";
-import { getMentors, MENTOR_FIELDS } from "@/lib/data";
-
-const fieldOptions = MENTOR_FIELDS.filter((f) => f !== "All");
+import { getMentors } from "@/lib/data";
+import { mentorFieldOptionGroups } from "@/lib/form-field-options";
 
 export default async function MentorshipPage({
   searchParams,
@@ -18,64 +17,55 @@ export default async function MentorshipPage({
       <p className="text-sm text-saffron-400 uppercase tracking-widest">Door 1</p>
       <h1 className="mt-2 text-3xl font-bold text-white">Mentorship</h1>
       <p className="mt-3 max-w-2xl text-white/65">
-        Choose a field, ask for a mentor or career conversation, and agree on
-        follow-up with coordinator support. Profiles below are fictional demo
-        entries — no direct contact on this site.
+        Browse by career domain — from UPSC and engineering to hotel management,
+        aviation, healthcare and more. Profiles are fictional demo entries; no
+        direct contact on this site.
       </p>
 
-      <div className="mt-8 flex flex-wrap gap-2">
-        {MENTOR_FIELDS.map((f) => {
-          const active =
-            (f === "All" && activeField === "all") ||
-            f.toLowerCase() === activeField?.toLowerCase();
-          return (
-            <Link
-              key={f}
-              href={f === "All" ? "/mentorship" : `/mentorship?field=${encodeURIComponent(f)}`}
-              className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
-                active
-                  ? "bg-saffron-500 text-navy-950"
-                  : "border border-white/15 text-white/70 hover:bg-white/10"
-              }`}
-            >
-              {f}
-            </Link>
-          );
-        })}
-      </div>
+      <FieldCategoryPicker activeField={activeField} />
 
-      <div className="mt-10 grid gap-6 lg:grid-cols-2">
-        {mentors.map((m) => (
-          <article
-            key={m.id}
-            className="rounded-2xl border border-white/10 bg-white/5 p-6"
-          >
-            <div className="flex flex-wrap items-start justify-between gap-2">
-              <div>
-                <h2 className="text-lg font-semibold text-white">{m.name}</h2>
-                <p className="text-sm text-white/50">Batch {m.batch} · {m.location}</p>
-              </div>
-              <span className="rounded-full bg-leaf-500/20 px-3 py-1 text-xs font-medium text-leaf-500">
-                {m.field}
-              </span>
-            </div>
-            <p className="mt-3 text-sm text-white/70">{m.bio}</p>
-            <p className="mt-2 text-xs text-white/45">
-              Languages: {m.languages.join(", ")} · {m.availability}
-            </p>
-            <div className="mt-3 flex flex-wrap gap-2">
-              {m.topics.map((t) => (
-                <span
-                  key={t}
-                  className="rounded-md bg-navy-900 px-2 py-1 text-xs text-white/60"
-                >
-                  {t}
+      {mentors.length === 0 ? (
+        <p className="mt-10 rounded-xl border border-white/10 bg-white/5 p-6 text-sm text-white/60">
+          No demo mentor listed for this field yet. Submit a request below — coordinators
+          can match you from the wider alumni network.
+        </p>
+      ) : (
+        <div className="mt-10 grid gap-6 lg:grid-cols-2">
+          {mentors.map((m) => (
+            <article
+              key={m.id}
+              className="rounded-2xl border border-white/10 bg-white/5 p-6"
+            >
+              <div className="flex flex-wrap items-start justify-between gap-2">
+                <div>
+                  <h2 className="text-lg font-semibold text-white">{m.name}</h2>
+                  <p className="text-sm text-white/50">
+                    Batch {m.batch} · {m.location}
+                  </p>
+                </div>
+                <span className="rounded-full bg-leaf-500/20 px-3 py-1 text-xs font-medium text-leaf-500">
+                  {m.field}
                 </span>
-              ))}
-            </div>
-          </article>
-        ))}
-      </div>
+              </div>
+              <p className="mt-1 text-xs text-saffron-400/80">{m.domain}</p>
+              <p className="mt-3 text-sm text-white/70">{m.bio}</p>
+              <p className="mt-2 text-xs text-white/45">
+                Languages: {m.languages.join(", ")} · {m.availability}
+              </p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {m.topics.map((t) => (
+                  <span
+                    key={t}
+                    className="rounded-md bg-navy-900 px-2 py-1 text-xs text-white/60"
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+      )}
 
       <div className="mt-14">
         <SubmitForm
@@ -95,15 +85,19 @@ export default async function MentorshipPage({
             },
             {
               name: "field",
-              label: "Field",
+              label: "Field / domain",
               type: "select",
-              options: [...fieldOptions],
+              optionGroups: mentorFieldOptionGroups(),
             },
             {
               name: "guidanceType",
               label: "Guidance type",
               type: "select",
-              options: ["One-to-one conversation", "Group session", "Career exploration"],
+              options: [
+                "One-to-one conversation",
+                "Group session",
+                "Career exploration",
+              ],
             },
             {
               name: "language",

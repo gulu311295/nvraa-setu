@@ -1,4 +1,5 @@
 import { SubmitForm } from "@/components/SubmitForm";
+import { mentorFieldOptionGroups } from "@/lib/form-field-options";
 
 export default function OfferPage() {
   return (
@@ -20,18 +21,9 @@ export default function OfferPage() {
             { name: "batch", label: "JNV batch / year", placeholder: "e.g. 2010" },
             {
               name: "field",
-              label: "Primary field",
+              label: "Primary field / domain",
               type: "select",
-              options: [
-                "Engineering",
-                "Medicine",
-                "Civil Services",
-                "Law",
-                "Banking & SSC",
-                "Teaching",
-                "Defence",
-                "Other",
-              ],
+              optionGroups: mentorFieldOptionGroups(),
             },
             {
               name: "availability",
