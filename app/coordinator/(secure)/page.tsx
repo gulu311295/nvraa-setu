@@ -1,3 +1,4 @@
+import { CoordinatorReviewQueue } from "@/components/CoordinatorReviewQueue";
 import { LogoutButton } from "@/components/LogoutButton";
 import {
   getConsultationDomains,
@@ -14,7 +15,7 @@ export default async function CoordinatorPage() {
   const jobs = getJobs("all");
   const domains = getConsultationDomains();
   const activity = getRecentActivity();
-  const submissions = await listSubmissions(30);
+  const submissions = await listSubmissions(50);
   const db = hasDatabase();
 
   return (
@@ -23,7 +24,7 @@ export default async function CoordinatorPage() {
         <div>
           <h1 className="text-3xl font-bold text-white">Master tracker</h1>
           <p className="mt-2 text-white/60">
-            Review · match · introduce · follow up
+            Review student requests · approve & match · follow up
           </p>
         </div>
         <LogoutButton />
@@ -32,11 +33,15 @@ export default async function CoordinatorPage() {
       <div className="mt-6 rounded-xl border border-leaf-500/30 bg-leaf-500/10 px-4 py-3 text-sm text-leaf-200/90">
         Storage:{" "}
         {db
-          ? "PostgreSQL (Railway DATABASE_URL) — form submissions persist."
-          : "In-memory (dev) — add PostgreSQL on Railway and set DATABASE_URL."}
+          ? "PostgreSQL — submissions and review status persist."
+          : "Local file (.data/submissions.json) — survives dev server restarts. Sample pending rows appear once if the queue is empty."}
       </div>
 
-      <div className="mt-8 grid gap-4 sm:grid-cols-4">
+      <section className="mt-10">
+        <CoordinatorReviewQueue submissions={submissions} />
+      </section>
+
+      <div className="mt-12 grid gap-4 sm:grid-cols-4">
         {Object.entries(stats).map(([key, value]) => (
           <div
             key={key}
@@ -51,50 +56,10 @@ export default async function CoordinatorPage() {
       </div>
 
       <section className="mt-12">
-        <h2 className="text-lg font-semibold">
-          Incoming form submissions ({submissions.length})
-        </h2>
-        <p className="mt-1 text-sm text-white/50">
-          Latest requests from mentorship, jobs, consultation and offer forms.
-        </p>
-        {submissions.length === 0 ? (
-          <p className="mt-4 text-sm text-white/45">No submissions yet.</p>
-        ) : (
-          <div className="mt-4 overflow-x-auto rounded-xl border border-white/10">
-            <table className="w-full min-w-[720px] text-left text-sm">
-              <thead className="bg-navy-900 text-white/50">
-                <tr>
-                  <th className="px-4 py-3">When</th>
-                  <th className="px-4 py-3">Type</th>
-                  <th className="px-4 py-3">Summary</th>
-                </tr>
-              </thead>
-              <tbody>
-                {submissions.map((s) => (
-                  <tr key={s.id} className="border-t border-white/5 align-top">
-                    <td className="px-4 py-3 whitespace-nowrap text-white/50">
-                      {new Date(s.created_at).toLocaleString("en-IN", {
-                        dateStyle: "short",
-                        timeStyle: "short",
-                      })}
-                    </td>
-                    <td className="px-4 py-3 text-saffron-400">{s.form_type}</td>
-                    <td className="px-4 py-3 text-white/75">
-                      <pre className="whitespace-pre-wrap font-sans text-xs leading-relaxed">
-                        {JSON.stringify(s.payload, null, 0).slice(0, 280)}
-                        {JSON.stringify(s.payload).length > 280 ? "…" : ""}
-                      </pre>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
-      </section>
-
-      <section className="mt-12">
         <h2 className="text-lg font-semibold">Mentor directory ({mentors.length})</h2>
+        <p className="mt-1 text-sm text-white/45">
+          Use when matching approved mentorship requests (demo profiles).
+        </p>
         <div className="mt-4 overflow-x-auto rounded-xl border border-white/10">
           <table className="w-full min-w-[640px] text-left text-sm">
             <thead className="bg-navy-900 text-white/50">

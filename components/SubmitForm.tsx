@@ -33,11 +33,12 @@ export function SubmitForm({
     const form = e.currentTarget;
     const data = Object.fromEntries(new FormData(form));
     try {
-      await fetch("/api/submit", {
+      const res = await fetch("/api/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ formType, ...data }),
       });
+      if (!res.ok) throw new Error("submit failed");
       setDone(true);
       form.reset();
     } catch {
