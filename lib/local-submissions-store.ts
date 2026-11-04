@@ -53,6 +53,12 @@ export async function localListSubmissions(limit: number) {
   return store.submissions.slice(0, limit).map(normalizeRow);
 }
 
+export async function localGetSubmissionById(id: number) {
+  const store = await readStore();
+  const row = store.submissions.find((s) => s.id === id);
+  return row ? normalizeRow(row) : null;
+}
+
 export async function localInsertSubmission(
   formType: string,
   payload: Record<string, unknown>,

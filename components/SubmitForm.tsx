@@ -2,6 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import {
+  alertErrorClass,
   btnPrimaryClass,
   cardClass,
   inputClass,
@@ -36,10 +37,12 @@ export function SubmitForm({
 }) {
   const [done, setDone] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
+    setError("");
     const form = e.currentTarget;
     const data = Object.fromEntries(new FormData(form));
     try {
@@ -48,11 +51,18 @@ export function SubmitForm({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ formType, ...data }),
       });
-      if (!res.ok) throw new Error("submit failed");
+      if (res.status === 401) {
+        setError("You must be signed in with an approved account before submitting.");
+        return;
+      }
+      if (!res.ok) {
+        setError("Could not submit. Try again or contact NVRAA coordinators.");
+        return;
+      }
       setDone(true);
       form.reset();
     } catch {
-      setDone(true);
+      setError("Network error — check your connection and try again.");
     } finally {
       setLoading(false);
     }
@@ -62,7 +72,7 @@ export function SubmitForm({
     return (
       <FormSuccess
         title="Request received"
-        message="An NVRAA coordinator will review your submission and follow up with consent-based introductions."
+        message="An NVRAA coordinator will review this in the mentorship queue at /coordinator. You can track status under “Your mentorship requests” on this page."
       />
     );
   }
@@ -96,6 +106,7 @@ export function SubmitForm({
                 required={f.required !== false}
                 rows={4}
                 placeholder={f.placeholder}
+                defaultValue={defaultValues[f.name] ?? ""}
                 className={textareaClass}
               />
             ) : f.type === "select" ? (
@@ -103,6 +114,7 @@ export function SubmitForm({
                 id={f.name}
                 name={f.name}
                 required={f.required !== false}
+                defaultValue={defaultValues[f.name] ?? ""}
                 className={selectClass}
               >
                 <option value="">Select…</option>
@@ -135,6 +147,7 @@ export function SubmitForm({
             )}
           </div>
         ))}
+        {error && <p className={alertErrorClass}>{error}</p>}
         <button type="submit" disabled={loading} className={btnPrimaryClass}>
           {loading ? "Submitting…" : "Submit for coordinator review"}
         </button>

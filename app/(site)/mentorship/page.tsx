@@ -1,8 +1,10 @@
 import { FieldCategoryPicker } from "@/components/FieldCategoryPicker";
+import { MentorshipFormScroll } from "@/components/MentorshipFormScroll";
 import { MentorshipRequestsPanel } from "@/components/MentorshipRequestsPanel";
 import { SubmitForm } from "@/components/SubmitForm";
 import { getCounsellingMentorById, getCounsellingMentors } from "@/lib/counselling-mentors";
 import { mentorFieldOptionGroups } from "@/lib/form-field-options";
+import { getAuthenticatedMember } from "@/lib/member-auth";
 import Link from "next/link";
 
 export default async function MentorshipPage({
@@ -14,8 +16,10 @@ export default async function MentorshipPage({
   const activeField = field ?? "all";
   const mentors = getCounsellingMentors(activeField === "all" ? undefined : activeField);
   const selectedMentor = mentorParam ? getCounsellingMentorById(mentorParam) : null;
+  const member = await getAuthenticatedMember();
 
   const formDefaults: Record<string, string> = {};
+  if (member?.full_name) formDefaults.fullName = member.full_name;
   if (selectedMentor) {
     formDefaults.mentorId = selectedMentor.id;
     formDefaults.mentorName = selectedMentor.name;
@@ -33,6 +37,7 @@ export default async function MentorshipPage({
       </p>
 
       <MentorshipRequestsPanel />
+      <MentorshipFormScroll mentorId={selectedMentor?.id} />
 
       <FieldCategoryPicker activeField={activeField} />
 
@@ -77,27 +82,40 @@ export default async function MentorshipPage({
                   </span>
                 ))}
               </div>
-              <Link
-                href={`/mentorship?mentor=${encodeURIComponent(m.id)}${activeField !== "all" ? `&field=${encodeURIComponent(activeField)}` : ""}`}
-                className="mt-auto pt-4 text-sm font-medium text-saffron-400 hover:text-saffron-300"
-              >
-                Request this mentor →
-              </Link>
+              <div className="mt-auto pt-4">
+                <Link
+                  href={`/mentorship?mentor=${encodeURIComponent(m.id)}${activeField !== "all" ? `&field=${encodeURIComponent(activeField)}` : ""}#request-mentor-form`}
+                  className="text-sm font-medium text-saffron-400 hover:text-saffron-300"
+                >
+                  Choose this mentor →
+                </Link>
+                <p className="mt-1 text-xs text-white/40">
+                  Opens the form below — you still need to submit it for coordinator review.
+                </p>
+              </div>
             </article>
           ))}
         </div>
       )}
 
-      <div className="mt-14">
+      <div id="request-mentor-form" className="mt-14 scroll-mt-24">
         {selectedMentor && (
           <p className="mb-4 rounded-xl border border-saffron-500/30 bg-saffron-500/10 px-4 py-3 text-sm text-saffron-100">
-            Requesting: <strong>{selectedMentor.name}</strong> (Batch {selectedMentor.batch})
+            Step 2 — Complete the form to send your request to coordinators:{" "}
+            <strong>{selectedMentor.name}</strong> (Batch {selectedMentor.batch}). Nothing is
+            sent until you press <strong>Submit for coordinator review</strong>.
+          </p>
+        )}
+        {!selectedMentor && (
+          <p className="mb-4 text-sm text-white/45">
+            Step 1: pick a mentor above (optional). Step 2: fill this form and submit — that
+            creates the entry in the coordinator mentorship queue.
           </p>
         )}
         <SubmitForm
           formType="mentorship"
           title="Request a mentor"
-          description="Share your field, question and availability. Coordinators review, assign a counselling mentor, then share contact details with you after approval."
+          description="Share your field, question and availability. After submit, coordinators see this under Mentorship requests on /coordinator."
           defaultValues={formDefaults}
           fields={[
             { name: "mentorId", label: "Mentor ID", type: "hidden", required: false },

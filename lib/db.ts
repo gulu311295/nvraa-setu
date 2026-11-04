@@ -1,6 +1,7 @@
 import { Pool } from "pg";
 import {
   ensureDemoSubmissionsIfEmpty,
+  localGetSubmissionById,
   localInsertSubmission,
   localListSubmissions,
   localUpdateSubmissionReview,
@@ -165,6 +166,32 @@ export async function insertSubmission(
     matched_mentor_id: row.matched_mentor_id,
     member_user_id: row.member_user_id,
   });
+}
+
+export async function getSubmissionById(id: number): Promise<SubmissionRow | null> {
+  const p = getPool();
+  if (!p) {
+    return localGetSubmissionById(id);
+  }
+  await ensureSchema();
+  const result = await p.query<{
+    id: number;
+    form_type: string;
+    payload: Record<string, unknown>;
+    created_at: Date;
+    status: string;
+    coordinator_notes: string | null;
+    reviewed_at: Date | null;
+    matched_mentor_id: string | null;
+    member_user_id: number | null;
+  }>(
+    `SELECT id, form_type, payload, created_at, status, coordinator_notes, reviewed_at,
+            matched_mentor_id, member_user_id
+     FROM submissions WHERE id = $1`,
+    [id]
+  );
+  const row = result.rows[0];
+  return row ? mapRow(row) : null;
 }
 
 export async function listSubmissions(limit = 50): Promise<SubmissionRow[]> {

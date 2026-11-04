@@ -39,8 +39,12 @@ export function SubmissionReviewCard({
   const router = useRouter();
   const [status, setStatus] = useState<SubmissionStatus>(submission.status);
   const [notes, setNotes] = useState(submission.coordinator_notes ?? "");
+  const preferredMentorId =
+    typeof submission.payload.mentorId === "string"
+      ? submission.payload.mentorId.trim()
+      : "";
   const [matchedMentorId, setMatchedMentorId] = useState(
-    submission.matched_mentor_id ?? ""
+    submission.matched_mentor_id ?? preferredMentorId ?? ""
   );
   const [contactPreview, setContactPreview] = useState<MentorContactPreview | null>(
     null
@@ -69,10 +73,11 @@ export function SubmissionReviewCard({
   }, [matchedMentorId, showMentorPicker]);
 
   async function saveReview() {
+    const mentorToAssign = matchedMentorId || preferredMentorId || "";
     if (
       isMentorship &&
       (status === "approved" || status === "matched") &&
-      !matchedMentorId
+      !mentorToAssign
     ) {
       setMessage("Select a mentor before approving or marking matched.");
       return;
@@ -85,7 +90,7 @@ export function SubmissionReviewCard({
       body: JSON.stringify({
         status,
         coordinatorNotes: notes,
-        matchedMentorId: showMentorPicker ? matchedMentorId || null : undefined,
+        matchedMentorId: showMentorPicker ? mentorToAssign || null : undefined,
       }),
     });
     setLoading(false);

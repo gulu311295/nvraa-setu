@@ -1,9 +1,10 @@
 import { isCoordinatorAuthenticated } from "@/lib/auth";
-import { updateSubmissionReview } from "@/lib/db";
+import { getSubmissionById, updateSubmissionReview } from "@/lib/db";
 import {
   isSubmissionStatus,
   type SubmissionStatus,
 } from "@/lib/submission-status";
+import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 
 export async function PATCH(
@@ -30,20 +31,37 @@ export async function PATCH(
       return NextResponse.json({ ok: false, error: "Invalid status" }, { status: 400 });
     }
 
-    const matchedMentorId =
+    const status = body.status as SubmissionStatus;
+    let matchedMentorId =
       body.matchedMentorId === undefined
-        ? null
+        ? undefined
         : body.matchedMentorId?.trim() || null;
+
+    const existing = await getSubmissionById(id);
+    if (
+      existing?.form_type === "mentorship" &&
+      (status === "approved" || status === "matched")
+    ) {
+      const preferred =
+        typeof existing.payload.mentorId === "string"
+          ? existing.payload.mentorId.trim()
+          : "";
+      if (!matchedMentorId && preferred) {
+        matchedMentorId = preferred;
+      }
+    }
 
     const updated = await updateSubmissionReview(
       id,
-      body.status as SubmissionStatus,
+      status,
       body.coordinatorNotes?.trim() || null,
       matchedMentorId
     );
     if (!updated) {
       return NextResponse.json({ ok: false, error: "Not found" }, { status: 404 });
     }
+    revalidatePath("/mentorship");
+    revalidatePath("/coordinator");
     return NextResponse.json({ ok: true, submission: updated });
   } catch (e) {
     console.error("coordinator review error", e);

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 type RequestRow = {
   id: number;
@@ -22,35 +22,55 @@ export function MentorshipRequestsPanel() {
   const [requests, setRequests] = useState<RequestRow[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    let cancelled = false;
-    (async () => {
-      const res = await fetch("/api/member/mentorship-requests");
-      if (!res.ok) {
-        setLoading(false);
-        return;
-      }
-      const json = (await res.json()) as { requests?: RequestRow[] };
-      if (!cancelled) {
-        setRequests(json.requests ?? []);
-        setLoading(false);
-      }
-    })();
-    return () => {
-      cancelled = true;
-    };
+  const load = useCallback(async () => {
+    const res = await fetch("/api/member/mentorship-requests", {
+      cache: "no-store",
+    });
+    if (!res.ok) {
+      setLoading(false);
+      return;
+    }
+    const json = (await res.json()) as { requests?: RequestRow[] };
+    setRequests(json.requests ?? []);
+    setLoading(false);
   }, []);
 
-  if (loading) return null;
+  useEffect(() => {
+    load();
+    const onFocus = () => load();
+    window.addEventListener("focus", onFocus);
+    return () => window.removeEventListener("focus", onFocus);
+  }, [load]);
+
+  if (loading) {
+    return (
+      <section className="mt-10 rounded-3xl border border-white/10 bg-white/[0.04] p-6 text-sm text-white/45">
+        Loading your mentorship requests…
+      </section>
+    );
+  }
+
   if (requests.length === 0) return null;
 
   return (
     <section className="mt-10 rounded-3xl border border-white/10 bg-white/[0.04] p-6 sm:p-8">
-      <h2 className="text-lg font-semibold text-white">Your mentorship requests</h2>
-      <p className="mt-1 text-sm text-white/50">
-        Mentor email and phone appear here only after a coordinator approves your request
-        and assigns a mentor.
-      </p>
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <h2 className="text-lg font-semibold text-white">Your mentorship requests</h2>
+          <p className="mt-1 text-sm text-white/50">
+            When a coordinator <strong className="font-medium text-white/70">approves</strong>{" "}
+            your request and assigns the mentor you chose, their email and phone appear here
+            (not on public mentor cards).
+          </p>
+        </div>
+        <button
+          type="button"
+          onClick={() => load()}
+          className="shrink-0 rounded-lg border border-white/15 px-3 py-1.5 text-xs text-white/70 hover:bg-white/10"
+        >
+          Refresh
+        </button>
+      </div>
       <ul className="mt-6 space-y-4">
         {requests.map((r) => (
           <li
@@ -96,7 +116,14 @@ export function MentorshipRequestsPanel() {
                       </a>
                     </li>
                   )}
-                  {r.contact.mobile && <li>Mobile: {r.contact.mobile}</li>}
+                  {r.contact.mobile && (
+                    <li>
+                      Phone:{" "}
+                      <a href={`tel:${r.contact.mobile}`} className="text-saffron-400">
+                        {r.contact.mobile}
+                      </a>
+                    </li>
+                  )}
                   {r.contact.whatsapp && r.contact.whatsapp !== r.contact.mobile && (
                     <li>WhatsApp: {r.contact.whatsapp}</li>
                   )}
@@ -110,7 +137,7 @@ export function MentorshipRequestsPanel() {
                 {r.status === "pending"
                   ? "Waiting for coordinator review."
                   : r.status === "approved" || r.status === "matched"
-                    ? "Coordinator is finalising mentor assignment."
+                    ? "Approved — if contact is missing, ask coordinators to confirm mentor assignment and database contact seed on production."
                     : "Contact details are not shared for this request."}
               </p>
             )}
