@@ -24,15 +24,22 @@ export async function PATCH(
     const body = (await request.json()) as {
       status?: string;
       coordinatorNotes?: string | null;
+      matchedMentorId?: string | null;
     };
     if (!body.status || !isSubmissionStatus(body.status)) {
       return NextResponse.json({ ok: false, error: "Invalid status" }, { status: 400 });
     }
 
+    const matchedMentorId =
+      body.matchedMentorId === undefined
+        ? null
+        : body.matchedMentorId?.trim() || null;
+
     const updated = await updateSubmissionReview(
       id,
       body.status as SubmissionStatus,
-      body.coordinatorNotes?.trim() || null
+      body.coordinatorNotes?.trim() || null,
+      matchedMentorId
     );
     if (!updated) {
       return NextResponse.json({ ok: false, error: "Not found" }, { status: 404 });

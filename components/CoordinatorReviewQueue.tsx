@@ -1,4 +1,5 @@
 import { SubmissionReviewCard } from "@/components/SubmissionReviewCard";
+import { listCounsellingMentorsForCoordinator } from "@/lib/counselling-mentors";
 import type { SubmissionRow } from "@/lib/db";
 import { STATUS_LABELS } from "@/lib/submission-status";
 
@@ -13,6 +14,7 @@ export function CoordinatorReviewQueue({
 }: {
   submissions: SubmissionRow[];
 }) {
+  const mentorOptions = listCounsellingMentorsForCoordinator();
   const mentorship = submissions.filter((s) => s.form_type === "mentorship");
   const scholarship = submissions.filter((s) => isScholarship(s.form_type));
   const other = submissions.filter(
@@ -79,7 +81,11 @@ export function CoordinatorReviewQueue({
         ) : (
           <div className="mt-6 space-y-4">
             {mentorship.map((s) => (
-              <SubmissionReviewCard key={s.id} submission={s} />
+              <SubmissionReviewCard
+                key={s.id}
+                submission={s}
+                mentorOptions={mentorOptions}
+              />
             ))}
           </div>
         )}

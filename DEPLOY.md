@@ -49,6 +49,19 @@ railway domain          # public URL
 
 Without secrets, use dashboard deploy on push to `main` (if repo is connected).
 
+## Counselling mentor contacts (private)
+
+Public mentor profiles live in `data/counselling-mentors.json` (no email/phone). Private contacts are generated from `Contact list.xlsx` into **`data/mentor-contacts.private.json`** (gitignored).
+
+After deploy, seed Postgres once (Railway Postgres → **Networking** → enable public URL if needed, then use that URL):
+
+```bash
+npm run import:mentors
+DATABASE_URL="postgresql://..." npm run import:mentors -- --push-db
+```
+
+On Railway, mentor contacts are read from the `mentor_contacts` table. Until seeded, coordinators can still assign mentors but contact preview may be empty until the table is populated.
+
 ## Notes
 
 - **Member access** and **form submissions** both persist in Postgres when `DATABASE_URL` is set.

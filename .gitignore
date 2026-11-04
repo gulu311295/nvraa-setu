@@ -5,3 +5,6 @@ out
 .DS_Store
 *.log
 .data/
+Contact list.xlsx
+~$*.xlsx
+data/mentor-contacts.private.json

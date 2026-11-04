@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   STATUS_LABELS,
   STATUS_STYLES,
@@ -18,26 +18,75 @@ export type SubmissionForReview = {
   status: SubmissionStatus;
   coordinator_notes: string | null;
   reviewed_at: string | null;
+  matched_mentor_id?: string | null;
+};
+
+type MentorOption = { id: string; name: string; batch: string; field: string };
+
+type MentorContactPreview = {
+  email: string | null;
+  mobile: string | null;
+  whatsapp: string | null;
 };
 
 export function SubmissionReviewCard({
   submission,
+  mentorOptions,
 }: {
   submission: SubmissionForReview;
+  mentorOptions?: MentorOption[];
 }) {
   const router = useRouter();
   const [status, setStatus] = useState<SubmissionStatus>(submission.status);
   const [notes, setNotes] = useState(submission.coordinator_notes ?? "");
+  const [matchedMentorId, setMatchedMentorId] = useState(
+    submission.matched_mentor_id ?? ""
+  );
+  const [contactPreview, setContactPreview] = useState<MentorContactPreview | null>(
+    null
+  );
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
+  const isMentorship = submission.form_type === "mentorship";
+  const showMentorPicker = isMentorship && mentorOptions && mentorOptions.length > 0;
+
+  useEffect(() => {
+    if (!showMentorPicker || !matchedMentorId) {
+      setContactPreview(null);
+      return;
+    }
+    let cancelled = false;
+    (async () => {
+      const res = await fetch(`/api/coordinator/mentors/${matchedMentorId}/contact`);
+      if (!res.ok || cancelled) return;
+      const json = (await res.json()) as { contact?: MentorContactPreview | null };
+      if (!cancelled) setContactPreview(json.contact ?? null);
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [matchedMentorId, showMentorPicker]);
+
   async function saveReview() {
+    if (
+      isMentorship &&
+      (status === "approved" || status === "matched") &&
+      !matchedMentorId
+    ) {
+      setMessage("Select a mentor before approving or marking matched.");
+      return;
+    }
     setLoading(true);
     setMessage("");
     const res = await fetch(`/api/coordinator/submissions/${submission.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ status, coordinatorNotes: notes }),
+      body: JSON.stringify({
+        status,
+        coordinatorNotes: notes,
+        matchedMentorId: showMentorPicker ? matchedMentorId || null : undefined,
+      }),
     });
     setLoading(false);
     if (!res.ok) {
@@ -49,7 +98,11 @@ export function SubmissionReviewCard({
   }
 
   const payloadEntries = Object.entries(submission.payload).filter(
-    ([, v]) => v !== undefined && v !== ""
+    ([key, v]) =>
+      v !== undefined &&
+      v !== "" &&
+      key !== "memberUserId" &&
+      key !== "memberEmail"
   );
 
   return (
@@ -76,16 +129,67 @@ export function SubmissionReviewCard({
 
       <dl className="mt-5 grid gap-3 sm:grid-cols-2">
         {payloadEntries.map(([key, value]) => (
-          <div key={key} className={key === "question" || key === "request" ? "sm:col-span-2" : ""}>
+          <div
+            key={key}
+            className={key === "question" || key === "request" ? "sm:col-span-2" : ""}
+          >
             <dt className="text-xs font-medium text-white/45">
               {labelForPayloadKey(key)}
             </dt>
-            <dd className="mt-0.5 text-sm text-white/85 whitespace-pre-wrap">
+            <dd className="mt-0.5 whitespace-pre-wrap text-sm text-white/85">
               {String(value)}
             </dd>
           </div>
         ))}
       </dl>
+
+      {showMentorPicker && (
+        <div className="mt-5 rounded-xl border border-sky-500/25 bg-sky-500/5 p-4">
+          <p className="text-sm font-medium text-white">Assign counselling mentor</p>
+          <p className="mt-1 text-xs text-white/45">
+            Contact details stay hidden from students until you approve and assign a
+            mentor. Only coordinators see the preview below.
+          </p>
+          <label className="mt-3 block text-xs text-white/50">
+            Mentor from counselling team
+            <select
+              value={matchedMentorId}
+              onChange={(e) => setMatchedMentorId(e.target.value)}
+              className="mt-1 w-full rounded-lg border border-white/15 bg-navy-900 px-3 py-2 text-sm text-white focus:border-saffron-400 focus:outline-none"
+            >
+              <option value="">Select mentor…</option>
+              {mentorOptions!.map((m) => (
+                <option key={m.id} value={m.id}>
+                  {m.name} · Batch {m.batch} · {m.field}
+                </option>
+              ))}
+            </select>
+          </label>
+          {contactPreview &&
+            (contactPreview.email || contactPreview.mobile || contactPreview.whatsapp) && (
+              <dl className="mt-3 grid gap-1 text-xs text-white/70 sm:grid-cols-2">
+                {contactPreview.email && (
+                  <div>
+                    <dt className="text-white/40">Email</dt>
+                    <dd>{contactPreview.email}</dd>
+                  </div>
+                )}
+                {contactPreview.mobile && (
+                  <div>
+                    <dt className="text-white/40">Mobile</dt>
+                    <dd>{contactPreview.mobile}</dd>
+                  </div>
+                )}
+                {contactPreview.whatsapp && (
+                  <div>
+                    <dt className="text-white/40">WhatsApp</dt>
+                    <dd>{contactPreview.whatsapp}</dd>
+                  </div>
+                )}
+              </dl>
+            )}
+        </div>
+      )}
 
       <div className="mt-6 border-t border-white/10 pt-5">
         <p className="text-sm font-medium text-white">Coordinator action</p>
@@ -115,7 +219,7 @@ export function SubmissionReviewCard({
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
             rows={2}
-            placeholder="e.g. Matched with Arun Kumar Singh (Batch 2008), intro email sent with consent."
+            placeholder="e.g. Matched with alumni mentor; student notified in SETU."
             className="mt-1 w-full rounded-lg border border-white/15 bg-navy-900 px-3 py-2 text-sm text-white placeholder:text-white/30 focus:border-saffron-400 focus:outline-none"
           />
         </label>

@@ -10,6 +10,8 @@ export type LocalSubmissionRow = {
   status: SubmissionStatus;
   coordinator_notes: string | null;
   reviewed_at: string | null;
+  matched_mentor_id: string | null;
+  member_user_id: number | null;
 };
 
 type StoreFile = {
@@ -38,14 +40,23 @@ async function writeStore(store: StoreFile) {
   await fs.writeFile(STORE_PATH, JSON.stringify(store, null, 2), "utf8");
 }
 
+function normalizeRow(row: LocalSubmissionRow): LocalSubmissionRow {
+  return {
+    ...row,
+    matched_mentor_id: row.matched_mentor_id ?? null,
+    member_user_id: row.member_user_id ?? null,
+  };
+}
+
 export async function localListSubmissions(limit: number) {
   const store = await readStore();
-  return store.submissions.slice(0, limit);
+  return store.submissions.slice(0, limit).map(normalizeRow);
 }
 
 export async function localInsertSubmission(
   formType: string,
-  payload: Record<string, unknown>
+  payload: Record<string, unknown>,
+  memberUserId: number | null = null
 ): Promise<LocalSubmissionRow> {
   const store = await readStore();
   const row: LocalSubmissionRow = {
@@ -56,6 +67,8 @@ export async function localInsertSubmission(
     status: "pending",
     coordinator_notes: null,
     reviewed_at: null,
+    matched_mentor_id: null,
+    member_user_id: memberUserId,
   };
   store.submissions.unshift(row);
   if (store.submissions.length > 200) store.submissions.pop();
@@ -66,17 +79,21 @@ export async function localInsertSubmission(
 export async function localUpdateSubmissionReview(
   id: number,
   status: SubmissionStatus,
-  coordinatorNotes: string | null
+  coordinatorNotes: string | null,
+  matchedMentorId?: string | null
 ): Promise<LocalSubmissionRow | null> {
   const store = await readStore();
   const idx = store.submissions.findIndex((s) => s.id === id);
   if (idx === -1) return null;
   const reviewedAt = new Date().toISOString();
+  const prev = store.submissions[idx];
   store.submissions[idx] = {
-    ...store.submissions[idx],
+    ...prev,
     status,
     coordinator_notes: coordinatorNotes,
     reviewed_at: reviewedAt,
+    matched_mentor_id:
+      matchedMentorId !== undefined ? matchedMentorId : prev.matched_mentor_id,
   };
   await writeStore(store);
   return store.submissions[idx];
@@ -102,6 +119,8 @@ export async function ensureDemoSubmissionsIfEmpty() {
         question: "Need guidance on starting UPSC preparation from Class XII.",
         availability: "Saturday evenings",
       },
+      matched_mentor_id: null,
+      member_user_id: null,
     },
     {
       form_type: "mentorship",
@@ -118,6 +137,8 @@ export async function ensureDemoSubmissionsIfEmpty() {
         question: "Is NCHM-JEE the right path after Class XII?",
         availability: "Sunday morning",
       },
+      matched_mentor_id: null,
+      member_user_id: null,
     },
   ];
   for (const d of demos) {

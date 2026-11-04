@@ -11,7 +11,7 @@ export async function POST(request: Request) {
     const body = (await request.json()) as Record<string, unknown>;
     const formType = String(body.formType ?? "unknown");
     const { formType: _, ...payload } = body;
-    await insertSubmission(formType, payload);
+    await insertSubmission(formType, payload, member.id);
     return NextResponse.json({ ok: true });
   } catch (e) {
     console.error("submit error", e);

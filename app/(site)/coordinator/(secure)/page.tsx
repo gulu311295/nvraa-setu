@@ -1,10 +1,10 @@
 import { CoordinatorReviewQueue } from "@/components/CoordinatorReviewQueue";
 import { MemberAccessQueue } from "@/components/MemberAccessQueue";
 import { LogoutButton } from "@/components/LogoutButton";
+import { getCounsellingMentors } from "@/lib/counselling-mentors";
 import {
   getConsultationDomains,
   getJobs,
-  getMentors,
   getRecentActivity,
   getStats,
 } from "@/lib/data";
@@ -15,7 +15,7 @@ export const dynamic = "force-dynamic";
 
 export default async function CoordinatorPage() {
   const stats = getStats();
-  const mentors = getMentors();
+  const mentors = getCounsellingMentors();
   const jobs = getJobs("all");
   const domains = getConsultationDomains();
   const activity = getRecentActivity();
@@ -67,9 +67,9 @@ export default async function CoordinatorPage() {
       </div>
 
       <section className="mt-12">
-        <h2 className="text-lg font-semibold">Mentor directory ({mentors.length})</h2>
+        <h2 className="text-lg font-semibold">Counselling mentors ({mentors.length})</h2>
         <p className="mt-1 text-sm text-white/45">
-          Use when matching approved mentorship requests (demo profiles).
+          NVRAA counselling team — assign in mentorship review (contacts hidden from public).
         </p>
         <div className="mt-4 overflow-x-auto rounded-xl border border-white/10">
           <table className="w-full min-w-[640px] text-left text-sm">

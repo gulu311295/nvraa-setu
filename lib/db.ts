@@ -65,6 +65,12 @@ async function ensureSchema() {
         CREATE INDEX IF NOT EXISTS submissions_status_idx
         ON submissions (status)
       `);
+      await p.query(`
+        ALTER TABLE submissions ADD COLUMN IF NOT EXISTS matched_mentor_id TEXT
+      `);
+      await p.query(`
+        ALTER TABLE submissions ADD COLUMN IF NOT EXISTS member_user_id INTEGER
+      `);
     })();
   }
   await schemaReady;
@@ -78,6 +84,8 @@ export type SubmissionRow = {
   status: SubmissionStatus;
   coordinator_notes: string | null;
   reviewed_at: string | null;
+  matched_mentor_id: string | null;
+  member_user_id: number | null;
 };
 
 function mapRow(r: {
@@ -88,6 +96,8 @@ function mapRow(r: {
   status?: string;
   coordinator_notes?: string | null;
   reviewed_at?: Date | string | null;
+  matched_mentor_id?: string | null;
+  member_user_id?: number | null;
 }): SubmissionRow {
   const status =
     r.status && isSubmissionStatus(r.status) ? r.status : "pending";
@@ -106,6 +116,8 @@ function mapRow(r: {
         ? r.reviewed_at
         : r.reviewed_at.toISOString()
       : null,
+    matched_mentor_id: r.matched_mentor_id ?? null,
+    member_user_id: r.member_user_id ?? null,
   };
 }
 
@@ -118,11 +130,12 @@ async function ensureLocalDemoOnce() {
 
 export async function insertSubmission(
   formType: string,
-  payload: Record<string, unknown>
+  payload: Record<string, unknown>,
+  memberUserId: number | null = null
 ): Promise<SubmissionRow> {
   const p = getPool();
   if (!p) {
-    return localInsertSubmission(formType, payload);
+    return localInsertSubmission(formType, payload, memberUserId);
   }
 
   await ensureSchema();
@@ -132,11 +145,13 @@ export async function insertSubmission(
     status: string;
     coordinator_notes: string | null;
     reviewed_at: Date | null;
+    matched_mentor_id: string | null;
+    member_user_id: number | null;
   }>(
-    `INSERT INTO submissions (form_type, payload, status)
-     VALUES ($1, $2::jsonb, 'pending')
-     RETURNING id, created_at, status, coordinator_notes, reviewed_at`,
-    [formType, JSON.stringify(payload)]
+    `INSERT INTO submissions (form_type, payload, status, member_user_id)
+     VALUES ($1, $2::jsonb, 'pending', $3)
+     RETURNING id, created_at, status, coordinator_notes, reviewed_at, matched_mentor_id, member_user_id`,
+    [formType, JSON.stringify(payload), memberUserId]
   );
   const row = result.rows[0];
   return mapRow({
@@ -147,6 +162,8 @@ export async function insertSubmission(
     status: row.status,
     coordinator_notes: row.coordinator_notes,
     reviewed_at: row.reviewed_at,
+    matched_mentor_id: row.matched_mentor_id,
+    member_user_id: row.member_user_id,
   });
 }
 
@@ -167,7 +184,8 @@ export async function listSubmissions(limit = 50): Promise<SubmissionRow[]> {
     coordinator_notes: string | null;
     reviewed_at: Date | null;
   }>(
-    `SELECT id, form_type, payload, created_at, status, coordinator_notes, reviewed_at
+    `SELECT id, form_type, payload, created_at, status, coordinator_notes, reviewed_at,
+            matched_mentor_id, member_user_id
      FROM submissions
      ORDER BY created_at DESC
      LIMIT $1`,
@@ -180,11 +198,21 @@ export async function listSubmissions(limit = 50): Promise<SubmissionRow[]> {
 export async function updateSubmissionReview(
   id: number,
   status: SubmissionStatus,
-  coordinatorNotes: string | null
+  coordinatorNotes: string | null,
+  matchedMentorId?: string | null
 ): Promise<SubmissionRow | null> {
   const p = getPool();
+  const updateMentor = matchedMentorId !== undefined;
+  const mentorValue =
+    matchedMentorId === undefined ? null : matchedMentorId?.trim() || null;
+
   if (!p) {
-    return localUpdateSubmissionReview(id, status, coordinatorNotes);
+    return localUpdateSubmissionReview(
+      id,
+      status,
+      coordinatorNotes,
+      updateMentor ? mentorValue : undefined
+    );
   }
 
   await ensureSchema();
@@ -196,15 +224,55 @@ export async function updateSubmissionReview(
     status: string;
     coordinator_notes: string | null;
     reviewed_at: Date | null;
+    matched_mentor_id: string | null;
+    member_user_id: number | null;
   }>(
     `UPDATE submissions
-     SET status = $2, coordinator_notes = $3, reviewed_at = NOW()
+     SET status = $2,
+         coordinator_notes = $3,
+         matched_mentor_id = CASE WHEN $5 THEN $4 ELSE matched_mentor_id END,
+         reviewed_at = NOW()
      WHERE id = $1
-     RETURNING id, form_type, payload, created_at, status, coordinator_notes, reviewed_at`,
-    [id, status, coordinatorNotes]
+     RETURNING id, form_type, payload, created_at, status, coordinator_notes, reviewed_at,
+               matched_mentor_id, member_user_id`,
+    [id, status, coordinatorNotes, mentorValue, updateMentor]
   );
   if (result.rowCount === 0) return null;
   return mapRow(result.rows[0]);
+}
+
+export async function listMemberMentorshipSubmissions(memberUserId: number) {
+  const p = getPool();
+  if (!p) {
+    const all = await localListSubmissions(100);
+    return all.filter(
+      (s) =>
+        s.form_type === "mentorship" &&
+        (s.member_user_id === memberUserId ||
+          s.payload.memberUserId === memberUserId)
+    );
+  }
+  await ensureSchema();
+  const result = await p.query<{
+    id: number;
+    form_type: string;
+    payload: Record<string, unknown>;
+    created_at: Date;
+    status: string;
+    coordinator_notes: string | null;
+    reviewed_at: Date | null;
+    matched_mentor_id: string | null;
+    member_user_id: number | null;
+  }>(
+    `SELECT id, form_type, payload, created_at, status, coordinator_notes, reviewed_at,
+            matched_mentor_id, member_user_id
+     FROM submissions
+     WHERE form_type = 'mentorship' AND member_user_id = $1
+     ORDER BY created_at DESC
+     LIMIT 20`,
+    [memberUserId]
+  );
+  return result.rows.map(mapRow);
 }
 
 export async function countPendingMentorship(): Promise<number> {

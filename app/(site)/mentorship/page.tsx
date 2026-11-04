@@ -1,40 +1,52 @@
 import { FieldCategoryPicker } from "@/components/FieldCategoryPicker";
+import { MentorshipRequestsPanel } from "@/components/MentorshipRequestsPanel";
 import { SubmitForm } from "@/components/SubmitForm";
-import { getMentors } from "@/lib/data";
+import { getCounsellingMentorById, getCounsellingMentors } from "@/lib/counselling-mentors";
 import { mentorFieldOptionGroups } from "@/lib/form-field-options";
+import Link from "next/link";
 
 export default async function MentorshipPage({
   searchParams,
 }: {
-  searchParams: Promise<{ field?: string }>;
+  searchParams: Promise<{ field?: string; mentor?: string }>;
 }) {
-  const { field } = await searchParams;
+  const { field, mentor: mentorParam } = await searchParams;
   const activeField = field ?? "all";
-  const mentors = getMentors(activeField === "all" ? undefined : activeField);
+  const mentors = getCounsellingMentors(activeField === "all" ? undefined : activeField);
+  const selectedMentor = mentorParam ? getCounsellingMentorById(mentorParam) : null;
+
+  const formDefaults: Record<string, string> = {};
+  if (selectedMentor) {
+    formDefaults.mentorId = selectedMentor.id;
+    formDefaults.mentorName = selectedMentor.name;
+    if (!field) formDefaults.field = selectedMentor.field;
+  }
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
-      <p className="text-sm text-saffron-400 uppercase tracking-widest">Door 1</p>
+      <p className="text-sm uppercase tracking-widest text-saffron-400">Door 1</p>
       <h1 className="mt-2 text-3xl font-bold text-white">Mentorship</h1>
       <p className="mt-3 max-w-2xl text-white/65">
-        Browse by career domain — from UPSC and engineering to hotel management,
-        aviation, healthcare and more. Profiles are fictional demo entries; no
-        direct contact on this site.
+        NVRAA counselling team alumni — real volunteers from our contact directory.
+        Profiles never show email or phone; after your request is approved, the coordinator
+        assigns a mentor and contact details appear in your request status below.
       </p>
+
+      <MentorshipRequestsPanel />
 
       <FieldCategoryPicker activeField={activeField} />
 
       {mentors.length === 0 ? (
         <p className="mt-10 rounded-xl border border-white/10 bg-white/5 p-6 text-sm text-white/60">
-          No demo mentor listed for this field yet. Submit a request below — coordinators
-          can match you from the wider alumni network.
+          No mentor listed for this filter yet. Try another field or submit a general
+          request below.
         </p>
       ) : (
         <div className="mt-10 grid gap-6 lg:grid-cols-2">
           {mentors.map((m) => (
             <article
               key={m.id}
-              className="rounded-2xl border border-white/10 bg-white/5 p-6"
+              className="flex flex-col rounded-2xl border border-white/10 bg-white/5 p-6"
             >
               <div className="flex flex-wrap items-start justify-between gap-2">
                 <div>
@@ -48,9 +60,12 @@ export default async function MentorshipPage({
                 </span>
               </div>
               <p className="mt-1 text-xs text-saffron-400/80">{m.domain}</p>
+              {m.organization && (
+                <p className="mt-2 text-xs text-white/45">{m.organization}</p>
+              )}
               <p className="mt-3 text-sm text-white/70">{m.bio}</p>
               <p className="mt-2 text-xs text-white/45">
-                Languages: {m.languages.join(", ")} · {m.availability}
+                Languages: {m.languages.join(", ")}
               </p>
               <div className="mt-3 flex flex-wrap gap-2">
                 {m.topics.map((t) => (
@@ -62,21 +77,35 @@ export default async function MentorshipPage({
                   </span>
                 ))}
               </div>
+              <Link
+                href={`/mentorship?mentor=${encodeURIComponent(m.id)}${activeField !== "all" ? `&field=${encodeURIComponent(activeField)}` : ""}`}
+                className="mt-auto pt-4 text-sm font-medium text-saffron-400 hover:text-saffron-300"
+              >
+                Request this mentor →
+              </Link>
             </article>
           ))}
         </div>
       )}
 
       <div className="mt-14">
+        {selectedMentor && (
+          <p className="mb-4 rounded-xl border border-saffron-500/30 bg-saffron-500/10 px-4 py-3 text-sm text-saffron-100">
+            Requesting: <strong>{selectedMentor.name}</strong> (Batch {selectedMentor.batch})
+          </p>
+        )}
         <SubmitForm
           formType="mentorship"
           title="Request a mentor"
-          description="Share your field, question and availability. Coordinators match you with a consenting volunteer."
+          description="Share your field, question and availability. Coordinators review, assign a counselling mentor, then share contact details with you after approval."
+          defaultValues={formDefaults}
           fields={[
+            { name: "mentorId", label: "Mentor ID", type: "hidden", required: false },
+            { name: "mentorName", label: "Mentor name", type: "hidden", required: false },
             {
               name: "fullName",
               label: "Your name",
-              placeholder: "Demo name only",
+              placeholder: "Your name",
             },
             {
               name: "classOrBatch",

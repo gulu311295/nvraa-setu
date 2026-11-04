@@ -1,0 +1,901 @@
+{
+  "mentors": [
+    {
+      "id": "cm01",
+      "name": "Rajendra Prasad",
+      "batch": "1994",
+      "admissionYear": "1987",
+      "field": "Medicine",
+      "domain": "Job",
+      "location": "Rajgir",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "availability": "Introduced by NVRAA coordinator after request approval",
+      "bio": "Working as PGT-Biology (Lecturer) in Kendriya Vidyalaya OFN, Rajgir. Education: Magadh University, NOU. Specialisation: Biology (Zoology specialisation).",
+      "topics": [
+        "Working as PGT-Biology (Lecturer) in Kendriya Vidyalaya OFN, Rajgir",
+        "Biology (Zoology specialisation)"
+      ],
+      "organization": "Kendriya Vidyalaya OFN Rajgir"
+    },
+    {
+      "id": "cm02",
+      "name": "Rajesh Ranjan Pravesh kumar",
+      "batch": "1994",
+      "admissionYear": "1987",
+      "field": "Aviation & aerospace",
+      "domain": "Job",
+      "location": "Chauriya",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "availability": "Introduced by NVRAA coordinator after request approval",
+      "bio": "Marine Superintendent. Education: T. S. Chankya. Specialisation: Merchant Navy.",
+      "topics": [
+        "Marine Superintendent",
+        "Merchant Navy"
+      ],
+      "organization": ""
+    },
+    {
+      "id": "cm03",
+      "name": "Gp Capt SB Sharma",
+      "batch": "1994",
+      "admissionYear": "1987",
+      "field": "Aviation & aerospace",
+      "domain": "Job",
+      "location": "Silao, Nalanda",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "availability": "Introduced by NVRAA coordinator after request approval",
+      "bio": "Aviation Sector. Education: Delhi University. Specialisation: MBA.",
+      "topics": [
+        "Aviation Sector",
+        "MBA"
+      ],
+      "organization": "Indian Air Force"
+    },
+    {
+      "id": "cm04",
+      "name": "Vijay kumar Choudhary",
+      "batch": "1994",
+      "admissionYear": "1987",
+      "field": "Medicine",
+      "domain": "Job",
+      "location": "Rajgir",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "availability": "Introduced by NVRAA coordinator after request approval",
+      "bio": "TUTOR CUM MEDICAL OFFICER PSM DEPARTMENT, PATNA MEDICAL COLLEGE, PATNA. Education: MEDICAL. Specialisation: MEDICAL.",
+      "topics": [
+        "TUTOR CUM MEDICAL OFFICER PSM DEPARTMENT, PATNA MEDICAL COLLEGE, PATNA",
+        "MEDICAL"
+      ],
+      "organization": "PATNA MEDICAL COLLEGE, PATNA"
+    },
+    {
+      "id": "cm05",
+      "name": "Chandrashekhar N R",
+      "batch": "1993",
+      "admissionYear": "1987",
+      "field": "Computer science & IT",
+      "domain": "Job",
+      "location": "Mudhol Bagalkot District",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "availability": "Introduced by NVRAA coordinator after request approval",
+      "bio": "Principle Architect Software Development. Education: BE BEC Bagalkot. Specialisation: BE Industrial Production.",
+      "topics": [
+        "Principle Architect Software Development",
+        "BE Industrial Production"
+      ],
+      "organization": "Brillio Technologies pvt ltd."
+    },
+    {
+      "id": "cm06",
+      "name": "Brajesh Sharma",
+      "batch": "1996",
+      "admissionYear": "1989",
+      "field": "Computer science & IT",
+      "domain": "Job",
+      "location": "Sheikhpura",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "availability": "Introduced by NVRAA coordinator after request approval",
+      "bio": "Heading Kids division for Relaince Retail. Education: Nift. Specialisation: Fashion Management.",
+      "topics": [
+        "Heading Kids division for Relaince Retail",
+        "Fashion Management"
+      ],
+      "organization": "Reliance Retail"
+    },
+    {
+      "id": "cm07",
+      "name": "Ajnavi Kumar",
+      "batch": "1996",
+      "admissionYear": "1989",
+      "field": "Computer science & IT",
+      "domain": "Entrepreneurship",
+      "location": "Nalanda",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "availability": "Introduced by NVRAA coordinator after request approval",
+      "bio": "I am a fitness business owner in my area in California bay area. Education: San Jose State University. Specialisation: Computer Engineering.",
+      "topics": [
+        "I am a fitness business owner in my area in California bay area",
+        "Computer Engineering"
+      ],
+      "organization": "YogaSix"
+    },
+    {
+      "id": "cm08",
+      "name": "Vijay kumar sinha",
+      "batch": "1996",
+      "admissionYear": "1989",
+      "field": "Medicine",
+      "domain": "Self Employed",
+      "location": "Bihar Sharif",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "availability": "Introduced by NVRAA coordinator after request approval",
+      "bio": "Kidney specialist doctor. Education: R g kar medical colllege, Kolkata. Specialisation: Kidney specialist.",
+      "topics": [
+        "Kidney specialist doctor",
+        "Kidney specialist"
+      ],
+      "organization": "Jaypee Hospital. NOIDA"
+    },
+    {
+      "id": "cm09",
+      "name": "Mani Kant Verma alias Surya Mani Verma",
+      "batch": "1995",
+      "admissionYear": "1990",
+      "field": "Banking & SSC",
+      "domain": "Job",
+      "location": "Bihar Sharif",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "availability": "Introduced by NVRAA coordinator after request approval",
+      "bio": "Banker. Education: Indian Institute of Management. Specialisation: Masters in Business Administration.",
+      "topics": [
+        "Banker",
+        "Masters in Business Administration"
+      ],
+      "organization": "National Bank of Kuwait"
+    },
+    {
+      "id": "cm10",
+      "name": "Uday Kumar",
+      "batch": "1995",
+      "admissionYear": "1990",
+      "field": "Medicine",
+      "domain": "Job",
+      "location": "Nalanda",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "availability": "Introduced by NVRAA coordinator after request approval",
+      "bio": "Pharma company employee. Education: IIT KGP; ISB Hyderabad. Specialisation: Mechanical Engineering; MBA.",
+      "topics": [
+        "Pharma company employee",
+        "Mechanical Engineering; MBA"
+      ],
+      "organization": "Laurus Labs"
+    },
+    {
+      "id": "cm11",
+      "name": "Rajeev Ranjan Kumar",
+      "batch": "1995",
+      "admissionYear": "1990",
+      "field": "Computer science & IT",
+      "domain": "Job",
+      "location": "Nalanda, Bihar",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "availability": "Introduced by NVRAA coordinator after request approval",
+      "bio": "Superintendent at CBIC. Education: Patna University. Specialisation: Sociology Honours.",
+      "topics": [
+        "Superintendent at CBIC",
+        "Sociology Honours"
+      ],
+      "organization": "CGST & Central Excise Audit Circle, Ranchi"
+    },
+    {
+      "id": "cm12",
+      "name": "Lokesh Paswan",
+      "batch": "1996",
+      "admissionYear": "1990",
+      "field": "Computer science & IT",
+      "domain": "Job",
+      "location": "Bihar",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "availability": "Introduced by NVRAA coordinator after request approval",
+      "bio": "Lead consultant. Education: IIT Madras. Specialisation: Chemical engineering.",
+      "topics": [
+        "Lead consultant",
+        "Chemical engineering"
+      ],
+      "organization": "Wipro"
+    },
+    {
+      "id": "cm13",
+      "name": "KUMAR VAIBHAV",
+      "batch": "1996",
+      "admissionYear": "1990",
+      "field": "General mentorship & careers",
+      "domain": "Job",
+      "location": "HARNAUT",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "availability": "Introduced by NVRAA coordinator after request approval",
+      "bio": "Working in Department of Atomic Energy. Education: GDM COLLEGE, HARNAUT. Specialisation: PUBLIC RELATION.",
+      "topics": [
+        "Working in Department of Atomic Energy",
+        "PUBLIC RELATION"
+      ],
+      "organization": "PRIME MINISTER OFFICE"
+    },
+    {
+      "id": "cm14",
+      "name": "Om Prakash Kumar",
+      "batch": "1997",
+      "admissionYear": "1990",
+      "field": "Computer science & IT",
+      "domain": "Job",
+      "location": "India",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "availability": "Introduced by NVRAA coordinator after request approval",
+      "bio": "Chief Software Architect.",
+      "topics": [
+        "Chief Software Architect"
+      ],
+      "organization": "Robert Bosch"
+    },
+    {
+      "id": "cm15",
+      "name": "Alka Bharti",
+      "batch": "1997",
+      "admissionYear": "1990",
+      "field": "Management & MBA",
+      "domain": "Job",
+      "location": "Bihar sharif",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "availability": "Introduced by NVRAA coordinator after request approval",
+      "bio": "CGST Inspector. Education: Magadh University. Specialisation: Hindi (Hons.).",
+      "topics": [
+        "CGST Inspector",
+        "Hindi (Hons.)"
+      ],
+      "organization": "CBEC, Ministry of Finance"
+    },
+    {
+      "id": "cm16",
+      "name": "Dr Prashant Kumar",
+      "batch": "1996",
+      "admissionYear": "1991",
+      "field": "Computer science & IT",
+      "domain": "Job, Self Employed",
+      "location": "Noorsarai",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "availability": "Introduced by NVRAA coordinator after request approval",
+      "bio": "I am Ophthalmologist.. Education: AIIMS, New Delhi. Specialisation: MD Ophthalmology.",
+      "topics": [
+        "I am Ophthalmologist.",
+        "MD Ophthalmology"
+      ],
+      "organization": "NEELKANTH NETRALAYA, Biharsharif"
+    },
+    {
+      "id": "cm17",
+      "name": "Rabindra Kumar jalaj",
+      "batch": "1999",
+      "admissionYear": "1992",
+      "field": "Agriculture & rural development",
+      "domain": "Job",
+      "location": "Harnaut, nalanda",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "availability": "Introduced by NVRAA coordinator after request approval",
+      "bio": "Fishery scientist. Education: G B Pant University of agriculture and technology, pantnagar. Specialisation: Fisheries science.",
+      "topics": [
+        "Fishery scientist",
+        "Fisheries science"
+      ],
+      "organization": "Bihar Agricultural University, kvk Rohta"
+    },
+    {
+      "id": "cm18",
+      "name": "Abhishek kumar",
+      "batch": "1999",
+      "admissionYear": "1992",
+      "field": "Medicine",
+      "domain": "Job",
+      "location": "Islampur, Nalanda",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "availability": "Introduced by NVRAA coordinator after request approval",
+      "bio": "Doctor, Consultant Radiologist. Education: Mahatma Gandhi Institute Of Medical sciences, Sewagram, Wardha, Maharashtra. Specialisation: MBBS, Postgraduation in Radiodiagnosis.",
+      "topics": [
+        "Doctor, Consultant Radiologist",
+        "MBBS, Postgraduation in Radiodiagnosis"
+      ],
+      "organization": "Ujala hospital, Kashipur, Uttrakhand"
+    },
+    {
+      "id": "cm19",
+      "name": "CA Tripurari Kumar",
+      "batch": "1999",
+      "admissionYear": "1992",
+      "field": "Computer science & IT",
+      "domain": "Business Person, Self Employed",
+      "location": "Patna",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "availability": "Introduced by NVRAA coordinator after request approval",
+      "bio": "Chartered Accountant. Education: ICAI and ICWAI. Specialisation: Chartered Accountant and Management Accountant.",
+      "topics": [
+        "Chartered Accountant",
+        "Chartered Accountant and Management Accountant"
+      ],
+      "organization": "Tripurari & Associates"
+    },
+    {
+      "id": "cm20",
+      "name": "Rajeev Ranjan ( Mantu)",
+      "batch": "1999",
+      "admissionYear": "1992",
+      "field": "Computer science & IT",
+      "domain": "Job, Entrepreneurship",
+      "location": "Bihar Sharif",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "availability": "Introduced by NVRAA coordinator after request approval",
+      "bio": "Audiologist and Speech Therapist. Education: AYJNIHH MUMBAI/NASHIK. Specialisation: Audiology and speech therapy.",
+      "topics": [
+        "Audiologist and Speech Therapist",
+        "Audiology and speech therapy"
+      ],
+      "organization": "DMCH LUDHIANA"
+    },
+    {
+      "id": "cm21",
+      "name": "VISHWARANJAN PRAKASH",
+      "batch": "1998",
+      "admissionYear": "1993",
+      "field": "Banking & SSC",
+      "domain": "Job, Seeking for Entrepreneur, Seeking for business partner",
+      "location": "Islampur, Nalanda",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "availability": "Introduced by NVRAA coordinator after request approval",
+      "bio": "Sr Branch Manager at National Insurance Co Ltd, Bihar sharif Branch. Education: JNU, SMU. Specialisation: Bachelor degree in Russian Language from JNU, MBA from Sikkim Manipal University..",
+      "topics": [
+        "Sr Branch Manager at National Insurance Co Ltd, Bihar sharif Branch",
+        "Bachelor degree in Russian Language from JNU, MBA from Sikki"
+      ],
+      "organization": "National Insurance Company Limited"
+    },
+    {
+      "id": "cm22",
+      "name": "Ved Prakash",
+      "batch": "1998",
+      "admissionYear": "1993",
+      "field": "Management & MBA",
+      "domain": "Job",
+      "location": "Bihar Sharif",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "availability": "Introduced by NVRAA coordinator after request approval",
+      "bio": "Operations and Distribution of petroleum product, Project handling of entire North zone. Education: Engg-NIT, Surat ; MBA -IIM Lucknow..",
+      "topics": [
+        "Operations and Distribution of petroleum product, Project handling of entire Nor"
+      ],
+      "organization": "Hindustan Petroleum Corporation Limited"
+    },
+    {
+      "id": "cm23",
+      "name": "Akriti",
+      "batch": "2005",
+      "admissionYear": "1998",
+      "field": "Defence (NDA/CDS/AFCAT)",
+      "domain": "Self Employed",
+      "location": "Barh (Patna)",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "availability": "Introduced by NVRAA coordinator after request approval",
+      "bio": "Running my own Coaching institute for IIT JEE / NDA / for 10th Pass students in patna (BIHAR). Education: B tech from nit Patna,M.tech from bit sindri(dhanbad). Specialisation: Electrical Engineering (control system).",
+      "topics": [
+        "Running my own Coaching institute for IIT JEE / NDA / for 10th Pass students in ",
+        "Electrical Engineering (control system)"
+      ],
+      "organization": "SHAPING FUTURE"
+    },
+    {
+      "id": "cm24",
+      "name": "Sumit Verma",
+      "batch": "2007",
+      "admissionYear": "2000",
+      "field": "Computer science & IT",
+      "domain": "Job",
+      "location": "Dhanbad",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "availability": "Introduced by NVRAA coordinator after request approval",
+      "bio": "Manager - Supply Chain. Education: NIT KURUKSHETRA, NITIE Mumbai. Specialisation: Supply Chain Management.",
+      "topics": [
+        "Manager - Supply Chain",
+        "Supply Chain Management"
+      ],
+      "organization": "Amazon India"
+    },
+    {
+      "id": "cm25",
+      "name": "Shishir Kumar",
+      "batch": "2007",
+      "admissionYear": "2000",
+      "field": "Law & judiciary",
+      "domain": "Business Person",
+      "location": "Mokama",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "availability": "Introduced by NVRAA coordinator after request approval",
+      "bio": "Advocate. Education: Banaras Hindu University. Specialisation: Law.",
+      "topics": [
+        "Advocate",
+        "Law"
+      ],
+      "organization": "Ministry of women and child development"
+    },
+    {
+      "id": "cm26",
+      "name": "Manoj Kumar",
+      "batch": "2008",
+      "admissionYear": "2001",
+      "field": "Computer science & IT",
+      "domain": "Job",
+      "location": "Rahui, Bihar sharif",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "availability": "Introduced by NVRAA coordinator after request approval",
+      "bio": "Faculty of Physics in IIT/ NEET coaching. Education: B.tech, IIT BHU. Specialisation: Mechanical engineering.",
+      "topics": [
+        "Faculty of Physics in IIT/ NEET coaching",
+        "Mechanical engineering"
+      ],
+      "organization": "IOTA CAREER ACADEMY Dehradun"
+    },
+    {
+      "id": "cm27",
+      "name": "Dr Dheeraj kumar",
+      "batch": "2005",
+      "admissionYear": "2001",
+      "field": "Medicine",
+      "domain": "Job, Entrepreneurship",
+      "location": "Patna",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "availability": "Introduced by NVRAA coordinator after request approval",
+      "bio": "Senior resident at patna medical college in department of medicine. Education: MBBS , MD ( medicine) , patna medical college.",
+      "topics": [
+        "Senior resident at patna medical college in department of medicine"
+      ],
+      "organization": "Patna medical college"
+    },
+    {
+      "id": "cm28",
+      "name": "Vishal Satyam",
+      "batch": "2008",
+      "admissionYear": "2001",
+      "field": "General mentorship & careers",
+      "domain": "Job",
+      "location": "Dihra, Rahui, Nalanda",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "availability": "Introduced by NVRAA coordinator after request approval",
+      "bio": "Tour & Travel. Education: PG- Tourism form BHU Varanasi. Specialisation: Tourism.",
+      "topics": [
+        "Tour & Travel",
+        "Tourism"
+      ],
+      "organization": "Sonvistrip.com"
+    },
+    {
+      "id": "cm29",
+      "name": "Guddu Kumar",
+      "batch": "2008",
+      "admissionYear": "2001",
+      "field": "Teaching (CTET / TET)",
+      "domain": "Job",
+      "location": "Hilsa",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "availability": "Introduced by NVRAA coordinator after request approval",
+      "bio": "Teaching. Education: IISER KOLKATA. Specialisation: Mathematics.",
+      "topics": [
+        "Teaching",
+        "Mathematics"
+      ],
+      "organization": "BNMU MADHEPURA"
+    },
+    {
+      "id": "cm30",
+      "name": "KUNAL GAUTAM",
+      "batch": "2008",
+      "admissionYear": "2001",
+      "field": "Banking & SSC",
+      "domain": "Job",
+      "location": "Barbigha",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "availability": "Introduced by NVRAA coordinator after request approval",
+      "bio": "Banker. Education: Patna college patna. Specialisation: BCA.",
+      "topics": [
+        "Banker",
+        "BCA"
+      ],
+      "organization": "SBI"
+    },
+    {
+      "id": "cm31",
+      "name": "Raviranjan Kumar",
+      "batch": "2007",
+      "admissionYear": "2002",
+      "field": "Computer science & IT",
+      "domain": "Job",
+      "location": "Bihar Sharif",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "availability": "Introduced by NVRAA coordinator after request approval",
+      "bio": "Software Engineer. Education: Asansol Engineering College. Specialisation: Mechanical Engineer.",
+      "topics": [
+        "Software Engineer",
+        "Mechanical Engineer"
+      ],
+      "organization": "TCS"
+    },
+    {
+      "id": "cm32",
+      "name": "Rahul Ranjan",
+      "batch": "2007",
+      "admissionYear": "2002",
+      "field": "Computer science & IT",
+      "domain": "Job, Entrepreneurship, Study",
+      "location": "Bihar Sharif",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "availability": "Introduced by NVRAA coordinator after request approval",
+      "bio": "Assistant Audit Officer, O/o CAG of India, Secretary - AGERWS, Incubating DocAcademy. Education: NIT Calicut, B Tech in Computer Science. IGNOU - MA in Psychology. Specialisation: Technology, Political Science, Psychology, Entrepreneurship, Social Affairs, Audit and Accounting.",
+      "topics": [
+        "Assistant Audit Officer, O/o CAG of India, Secretary - AGERWS, Incubating DocAca",
+        "Technology, Political Science, Psychology, Entrepreneurship,"
+      ],
+      "organization": "O/o the CAG of India"
+    },
+    {
+      "id": "cm33",
+      "name": "Rahul Gupta",
+      "batch": "2007",
+      "admissionYear": "2002",
+      "field": "Banking & SSC",
+      "domain": "Job",
+      "location": "Bihar Sharif",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "availability": "Introduced by NVRAA coordinator after request approval",
+      "bio": "Banker. Education: IISER Mohali. Specialisation: Mathematics.",
+      "topics": [
+        "Banker",
+        "Mathematics"
+      ],
+      "organization": "SBI"
+    },
+    {
+      "id": "cm34",
+      "name": "Ashutosh Ranjan",
+      "batch": "2007",
+      "admissionYear": "2002",
+      "field": "Defence (NDA/CDS/AFCAT)",
+      "domain": "Study, Job Seeker",
+      "location": "Samastipur",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "availability": "Introduced by NVRAA coordinator after request approval",
+      "bio": "Study, Job Seeker. Education: Gossener College, Ranchi. Specialisation: Accounts, Finance and Taxation.",
+      "topics": [
+        "Study, Job Seeker",
+        "Accounts, Finance and Taxation"
+      ],
+      "organization": "Dakshana Foundation"
+    },
+    {
+      "id": "cm35",
+      "name": "Aysha",
+      "batch": "2008",
+      "admissionYear": "2003",
+      "field": "Banking & SSC",
+      "domain": "Job",
+      "location": "Patna",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "availability": "Introduced by NVRAA coordinator after request approval",
+      "bio": "Job. Education: Darbhanga. Specialisation: It.",
+      "topics": [
+        "Job",
+        "It"
+      ],
+      "organization": "Banker"
+    },
+    {
+      "id": "cm36",
+      "name": "Aanaya Singh (Sanju)",
+      "batch": "2008",
+      "admissionYear": "2003",
+      "field": "Engineering (core branches)",
+      "domain": "Business Person",
+      "location": "Nalanda",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "availability": "Introduced by NVRAA coordinator after request approval",
+      "bio": "Co-investment (Franchise Owner). Education: DTU. Specialisation: B.Tech (CSE).",
+      "topics": [
+        "Co-investment (Franchise Owner)",
+        "B.Tech (CSE)"
+      ],
+      "organization": "Career Point Ltd"
+    },
+    {
+      "id": "cm37",
+      "name": "Ankit Prabhakar",
+      "batch": "2009",
+      "admissionYear": "2004",
+      "field": "Engineering (core branches)",
+      "domain": "Job",
+      "location": "Pawapuri,Nalanda",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "availability": "Introduced by NVRAA coordinator after request approval",
+      "bio": "Senior Engineer. Education: IIT(ISM) DHANBAD. Specialisation: MECHANICAL ENGINEERING (B.TECH).",
+      "topics": [
+        "Senior Engineer",
+        "MECHANICAL ENGINEERING (B.TECH)"
+      ],
+      "organization": "Mineral Exploration Corporation Limited."
+    },
+    {
+      "id": "cm38",
+      "name": "Rahul Ranjan",
+      "batch": "2007",
+      "admissionYear": "2004",
+      "field": "Railways & RRB",
+      "domain": "Job",
+      "location": "Bihar Sharif",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "availability": "Introduced by NVRAA coordinator after request approval",
+      "bio": "Engg. In Indian railways. Education: NIT, Patna. Specialisation: Civil engineering, Transportation Engg..",
+      "topics": [
+        "Engg. In Indian railways",
+        "Civil engineering, Transportation Engg."
+      ],
+      "organization": "Indian railways"
+    },
+    {
+      "id": "cm39",
+      "name": "Mitali kumari",
+      "batch": "2009",
+      "admissionYear": "2004",
+      "field": "Computer science & IT",
+      "domain": "Job",
+      "location": "Bihar",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "availability": "Introduced by NVRAA coordinator after request approval",
+      "bio": "Software developer. Education: College of engineering Bhubaneswar. Specialisation: Electrical and electronics engineering.",
+      "topics": [
+        "Software developer",
+        "Electrical and electronics engineering"
+      ],
+      "organization": "Toshiba software India private limited, Bangalore"
+    },
+    {
+      "id": "cm40",
+      "name": "Jayshree Verma",
+      "batch": "2011",
+      "admissionYear": "2004",
+      "field": "Computer science & IT",
+      "domain": "Job",
+      "location": "Patna",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "availability": "Introduced by NVRAA coordinator after request approval",
+      "bio": "Electrical Engineer. Education: NIT Patna. Specialisation: Electrical Engineer.",
+      "topics": [
+        "Electrical Engineer",
+        "Electrical Engineer"
+      ],
+      "organization": "RIL"
+    },
+    {
+      "id": "cm41",
+      "name": "Hari Om Sinha",
+      "batch": "2009",
+      "admissionYear": "2004",
+      "field": "Computer science & IT",
+      "domain": "Business Person, Entrepreneurship, Self Employed",
+      "location": "Vill-Manpur, Dist-Nalanda, Bihar",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "availability": "Introduced by NVRAA coordinator after request approval",
+      "bio": "Educational Consultant, Owner Sudha Services Educational Consultancy, Nanded, Maharashtra Founder/ Entrepreneur of two other venture toporup and rail safar Ex co-founder Sellxg.com(2016-17) Swift Reporting App(2017-18) Virgin Brain App(2016-18) Omni online (2015- 16). Education: BBM- AN College, Patna, Bibar PGPCEM- XLRI Jamshedpur, Jharkhand. Specialisation: Management, Entrepreneurship Management.",
+      "topics": [
+        "Educational Consultant, Owner Sudha Services Educational Consultancy, Nanded, Ma",
+        "Management, Entrepreneurship Management"
+      ],
+      "organization": "Sudha Services Educational Consultancy, Nanded, Maharashtra"
+    },
+    {
+      "id": "cm42",
+      "name": "Kumar Abhijeet",
+      "batch": "2013",
+      "admissionYear": "2006",
+      "field": "Engineering (core branches)",
+      "domain": "Job, Entrepreneurship, Seeking for Entrepreneur",
+      "location": "Bakhtiyarpur",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "availability": "Introduced by NVRAA coordinator after request approval",
+      "bio": "Content Writer in Media Mantra, YouTube Video Creator, Travel Vlogging, Blogging. Education: University of Delhi. Specialisation: Business Journalism.",
+      "topics": [
+        "Content Writer in Media Mantra, YouTube Video Creator, Travel Vlogging, Blogging",
+        "Business Journalism"
+      ],
+      "organization": "YouTube, Media Mantra"
+    },
+    {
+      "id": "cm43",
+      "name": "Gulshan kumar",
+      "batch": "2011",
+      "admissionYear": "2006",
+      "field": "Computer science & IT",
+      "domain": "Job",
+      "location": "Patna",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "availability": "Introduced by NVRAA coordinator after request approval",
+      "bio": "Software developer. Education: Iit roorkee. Specialisation: Mathematics and computing.",
+      "topics": [
+        "Software developer",
+        "Mathematics and computing"
+      ],
+      "organization": "LYFT"
+    },
+    {
+      "id": "cm44",
+      "name": "Sujeet Kumar",
+      "batch": "2012",
+      "admissionYear": "2007",
+      "field": "Computer science & IT",
+      "domain": "Job",
+      "location": "Akair, Nalanda",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "availability": "Introduced by NVRAA coordinator after request approval",
+      "bio": "Software development Engineer. Education: Indian Institute of Technology, BHU (Varanasi). Specialisation: Computer science and engineering.",
+      "topics": [
+        "Software development Engineer",
+        "Computer science and engineering"
+      ],
+      "organization": "Amazon"
+    },
+    {
+      "id": "cm45",
+      "name": "Durgesh kumar singh",
+      "batch": "2012",
+      "admissionYear": "2007",
+      "field": "Agriculture & rural development",
+      "domain": "Study",
+      "location": "Ballia",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "availability": "Introduced by NVRAA coordinator after request approval",
+      "bio": "Master's of Social Work (MSW). Education: Lucknow University. Specialisation: Rural Development.",
+      "topics": [
+        "Master's of Social Work (MSW)",
+        "Rural Development"
+      ],
+      "organization": "Lucknow University & Family planning of india lucknow branch ."
+    }
+  ]
+}

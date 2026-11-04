@@ -14,7 +14,7 @@ import { FormSuccess } from "./FormSuccess";
 type Field = {
   name: string;
   label: string;
-  type?: "text" | "email" | "textarea" | "select";
+  type?: "text" | "email" | "textarea" | "select" | "hidden";
   required?: boolean;
   options?: string[];
   optionGroups?: { label: string; options: string[] }[];
@@ -26,11 +26,13 @@ export function SubmitForm({
   title,
   description,
   fields,
+  defaultValues = {},
 }: {
   formType: string;
   title: string;
   description: string;
   fields: Field[];
+  defaultValues?: Record<string, string>;
 }) {
   const [done, setDone] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -71,12 +73,23 @@ export function SubmitForm({
       <p className="mt-2 text-sm leading-relaxed text-white/55">{description}</p>
       <form onSubmit={onSubmit} className="mt-8 space-y-5">
         {fields.map((f) => (
-          <div key={f.name}>
-            <label htmlFor={f.name} className={labelClass}>
-              {f.label}
-              {f.required !== false && <span className="normal-case text-saffron-400"> *</span>}
-            </label>
-            {f.type === "textarea" ? (
+          <div key={f.name} className={f.type === "hidden" ? "hidden" : undefined}>
+            {f.type !== "hidden" && (
+              <label htmlFor={f.name} className={labelClass}>
+                {f.label}
+                {f.required !== false && (
+                  <span className="normal-case text-saffron-400"> *</span>
+                )}
+              </label>
+            )}
+            {f.type === "hidden" ? (
+              <input
+                type="hidden"
+                id={f.name}
+                name={f.name}
+                defaultValue={defaultValues[f.name] ?? ""}
+              />
+            ) : f.type === "textarea" ? (
               <textarea
                 id={f.name}
                 name={f.name}
@@ -116,6 +129,7 @@ export function SubmitForm({
                 type={f.type ?? "text"}
                 required={f.required !== false}
                 placeholder={f.placeholder}
+                defaultValue={defaultValues[f.name] ?? ""}
                 className={inputClass}
               />
             )}

@@ -1,4 +1,6 @@
 const FIELD_LABELS: Record<string, string> = {
+  mentorId: "Preferred mentor ID",
+  mentorName: "Preferred mentor name",
   fullName: "Name",
   classOrBatch: "Class / pass-out year",
   field: "Field / domain",

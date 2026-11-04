@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start",
     "start:clean": "rm -rf .next && next build && next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "import:mentors": "node scripts/import-counselling-mentors.mjs"
   },
   "dependencies": {
     "next": "^15.1.0",
