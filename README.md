@@ -4,7 +4,8 @@ Year-round alumni, mentorship and opportunity network for **JNV Rajgir / NVRAA**
 
 ## Features
 
-- Mentorship, jobs, exam consultation, and alumni “offer support” flows
+- **Gated access** — users request access at `/signup`; coordinators approve at `/coordinator` before `/login` works
+- Mentorship, jobs, exam consultation, scholarships, and alumni “offer support” flows
 - **Coordinator login** (`/coordinator/login`) with password protection
 - **PostgreSQL** persistence for form submissions when `DATABASE_URL` is set (Railway Postgres)
 - In-memory submission fallback for local dev without a database

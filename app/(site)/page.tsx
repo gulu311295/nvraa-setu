@@ -24,6 +24,13 @@ const doors = [
     steps: ["Pick exam track", "Request strategy help", "Connect with alumni"],
   },
   {
+    href: "/scholarship",
+    title: "Scholarships & Aid",
+    subtitle: "Schemes, fee support & application help",
+    icon: "🎖️",
+    steps: ["Browse listings", "Request guidance", "Coordinator matches help"],
+  },
+  {
     href: "/offer",
     title: "Offer Support / Share a Job",
     subtitle: "Alumni mentors, consultants & employers",
@@ -88,7 +95,7 @@ export default function HomePage() {
       </section>
 
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-        <h2 className="text-2xl font-semibold text-white">Three doors into the network</h2>
+        <h2 className="text-2xl font-semibold text-white">Five doors into the network</h2>
         <p className="mt-2 max-w-2xl text-white/60">
           Choose what you need — the system routes your request to the relevant
           coordinator or alumni volunteer.
@@ -98,7 +105,7 @@ export default function HomePage() {
             <Link
               key={door.href}
               href={door.href}
-              className="group flex flex-col rounded-2xl border border-white/10 bg-white/5 p-6 transition-all hover:border-saffron-400/50 hover:bg-white/[0.08]"
+              className="group flex flex-col rounded-3xl border border-white/10 bg-white/[0.04] p-6 shadow-lg shadow-black/10 backdrop-blur-sm transition-all hover:border-saffron-400/40 hover:bg-white/[0.07] hover:shadow-glow"
             >
               <span className="text-3xl">{door.icon}</span>
               <h3 className="mt-4 text-xl font-semibold text-white group-hover:text-saffron-400 transition-colors">

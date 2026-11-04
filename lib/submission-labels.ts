@@ -21,6 +21,13 @@ const FIELD_LABELS: Record<string, string> = {
   eligibility: "Eligibility",
   deadline: "Deadline",
   applicationLink: "Application link",
+  provider: "Organisation / sponsor",
+  amount: "Amount or benefit",
+  educationLevel: "Education level",
+  scholarshipCategory: "Scholarship category",
+  familyIncome: "Family income",
+  documentsStatus: "Documents status",
+  needDescription: "Need / question",
   batch: "JNV batch",
   topics: "Topics",
   consent: "Consent",
@@ -37,6 +44,8 @@ export function formTypeLabel(formType: string) {
     consultation: "Exam consultation",
     mentor_volunteer: "Mentor volunteer",
     job_post: "Job / vacancy posted",
+    scholarship: "Scholarship support request",
+    scholarship_post: "Scholarship / fund posted",
   };
   return map[formType] ?? formType;
 }

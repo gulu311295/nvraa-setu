@@ -7,6 +7,7 @@ import {
 
 export type Mentor = (typeof seed.mentors)[number];
 export type Job = (typeof seed.jobs)[number];
+export type Scholarship = (typeof seed.scholarships)[number];
 export type ConsultationDomain = (typeof seed.consultationDomains)[number];
 export type Activity = (typeof seed.recentActivity)[number];
 
@@ -22,6 +23,11 @@ export function getMentors(field?: string) {
 export function getJobs(status: "open" | "all" = "open") {
   if (status === "all") return seed.jobs;
   return seed.jobs.filter((j) => j.status === "open");
+}
+
+export function getScholarships(status: "open" | "all" = "open") {
+  if (status === "all") return seed.scholarships;
+  return seed.scholarships.filter((s) => s.status === "open");
 }
 
 export function getConsultationDomains() {

@@ -7,6 +7,7 @@ import {
   CAREER_FIELD_CATEGORIES,
   getCategoryForField,
 } from "@/lib/career-fields";
+import { selectClass } from "@/components/ui/form-styles";
 
 export function FieldCategoryPicker({ activeField }: { activeField: string }) {
   const router = useRouter();
@@ -50,11 +51,8 @@ export function FieldCategoryPicker({ activeField }: { activeField: string }) {
     goToField(field);
   }
 
-  const selectClass =
-    "w-full rounded-lg border border-white/15 bg-navy-900 px-3 py-2.5 text-sm text-white focus:border-saffron-400 focus:outline-none focus:ring-1 focus:ring-saffron-400";
-
   return (
-    <div className="mt-8 rounded-xl border border-white/10 bg-white/[0.04] p-4 sm:p-5">
+    <div className="mt-8 rounded-3xl border border-white/10 bg-white/[0.04] p-5 sm:p-6 backdrop-blur-sm">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <h2 className="text-sm font-semibold text-white">Filter by domain</h2>

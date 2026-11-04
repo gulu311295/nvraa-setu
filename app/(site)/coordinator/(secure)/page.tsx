@@ -1,4 +1,5 @@
 import { CoordinatorReviewQueue } from "@/components/CoordinatorReviewQueue";
+import { MemberAccessQueue } from "@/components/MemberAccessQueue";
 import { LogoutButton } from "@/components/LogoutButton";
 import {
   getConsultationDomains,
@@ -8,6 +9,9 @@ import {
   getStats,
 } from "@/lib/data";
 import { hasDatabase, listSubmissions } from "@/lib/db";
+import { listMemberUsers } from "@/lib/users-db";
+
+export const dynamic = "force-dynamic";
 
 export default async function CoordinatorPage() {
   const stats = getStats();
@@ -16,7 +20,12 @@ export default async function CoordinatorPage() {
   const domains = getConsultationDomains();
   const activity = getRecentActivity();
   const submissions = await listSubmissions(50);
+  const members = await listMemberUsers(100);
+  const pendingMembers = members.filter((m) => m.status === "pending");
   const db = hasDatabase();
+  const memberStorageHint = db
+    ? `PostgreSQL member_users — ${members.length} account(s), ${pendingMembers.length} pending.`
+    : `Local .data/users.json — ${members.length} account(s), ${pendingMembers.length} pending.`;
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
@@ -33,11 +42,13 @@ export default async function CoordinatorPage() {
       <div className="mt-6 rounded-xl border border-leaf-500/30 bg-leaf-500/10 px-4 py-3 text-sm text-leaf-200/90">
         Storage:{" "}
         {db
-          ? "PostgreSQL — submissions and review status persist."
-          : "Local file (.data/submissions.json) — survives dev server restarts. Sample pending rows appear once if the queue is empty."}
+          ? "PostgreSQL — submissions and member accounts persist."
+          : "Local files (.data/users.json, .data/submissions.json) — use one dev port for signup and coordinator."}
       </div>
 
-      <section className="mt-10">
+      <MemberAccessQueue members={members} storageHint={memberStorageHint} />
+
+      <section className="mt-12">
         <CoordinatorReviewQueue submissions={submissions} />
       </section>
 

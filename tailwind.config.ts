@@ -24,8 +24,11 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ["var(--font-geist-sans)", "system-ui", "sans-serif"],
-        display: ["var(--font-display)", "Georgia", "serif"],
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+        display: ["var(--font-sans)", "Georgia", "serif"],
+      },
+      boxShadow: {
+        glow: "0 0 40px -10px rgba(231, 111, 81, 0.35)",
       },
     },
   },

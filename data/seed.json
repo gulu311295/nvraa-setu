@@ -244,6 +244,68 @@
       "status": "open"
     }
   ],
+  "scholarships": [
+    {
+      "id": "s1",
+      "title": "Navodaya Alumni Merit Scholarship (demo)",
+      "provider": "NVRAA Education Fund",
+      "amount": "₹25,000 / year",
+      "educationLevel": "Class XI–XII",
+      "eligibility": "JNV Rajgir students; family income below ₹4.5 LPA; min 75% in previous class",
+      "deadline": "2026-06-30",
+      "postedBy": "NVRAA SETU coordinators",
+      "link": "nvraa-setu.example/scholarships/merit",
+      "status": "open"
+    },
+    {
+      "id": "s2",
+      "title": "Higher Education Support — STEM",
+      "provider": "Alumni circle (Batch 2008–2012)",
+      "amount": "₹50,000 one-time",
+      "educationLevel": "Undergraduate (B.Tech / B.Sc)",
+      "eligibility": "First-generation graduate; admission to recognised university; STEM branch",
+      "deadline": "2026-05-15",
+      "postedBy": "Alumni referral — Neha V. (Batch 2012)",
+      "link": "apply.example.com/stem-support",
+      "status": "open"
+    },
+    {
+      "id": "s3",
+      "title": "National Scholarship Portal — Post-Matric SC/ST",
+      "provider": "Government of India (via NSP)",
+      "amount": "As per scheme",
+      "educationLevel": "Class XI to PG",
+      "eligibility": "SC/ST students with valid caste certificate and income certificate",
+      "deadline": "Rolling (check NSP window)",
+      "postedBy": "Coordinator-curated listing",
+      "link": "scholarships.gov.in",
+      "status": "open"
+    },
+    {
+      "id": "s4",
+      "title": "Girls in Aviation Scholarship (demo)",
+      "provider": "Industry partner programme",
+      "amount": "Training fee waiver + stipend",
+      "educationLevel": "12th pass / Diploma",
+      "eligibility": "Female candidates; age 17–24; English proficiency; medical fit",
+      "deadline": "2026-04-20",
+      "postedBy": "Employer partner listing",
+      "link": "aviation.example.com/girls-scholar",
+      "status": "open"
+    },
+    {
+      "id": "s5",
+      "title": "Coaching fee assistance — Govt exams",
+      "provider": "NVRAA SETU (limited seats)",
+      "amount": "Up to ₹15,000",
+      "educationLevel": "12th pass and above",
+      "eligibility": "UPSC/SSC/Banking/Defence aspirants from JNV Rajgir; coordinator interview",
+      "deadline": "Rolling",
+      "postedBy": "NVRAA SETU core team",
+      "link": "nvraa-setu.example/scholarships/coaching",
+      "status": "open"
+    }
+  ],
   "consultationDomains": [
     {
       "id": "c1",
@@ -309,6 +371,7 @@
   "recentActivity": [
     { "id": "a1", "type": "introduction", "text": "Class XII student matched with Civil Services mentor (UPSC Prelims stage).", "date": "2026-10-18" },
     { "id": "a2", "type": "job", "text": "Software intern listing shared with 4 eligible job seekers.", "date": "2026-10-17" },
+    { "id": "a8", "type": "scholarship", "text": "Class XI student matched with alumni for post-matric scholarship application.", "date": "2026-10-19" },
     { "id": "a6", "type": "mentorship", "text": "Hotel management aspirant connected for NCHM-JEE and internship guidance.", "date": "2026-10-16" },
     { "id": "a7", "type": "consultation", "text": "Aviation pathway Q&A — pilot vs AME vs ground staff.", "date": "2026-10-14" },
     { "id": "a3", "type": "mentorship", "text": "Group session: Engineering careers — 22 students attended.", "date": "2026-10-12" },
