@@ -3,7 +3,7 @@ import path from "path";
 import {
   ensureMentorContactsSchema,
   getMentorContactFromDb,
-  seedMentorContactsFromFileIfEmpty,
+  seedMentorContactsIfEmpty,
   type MentorContact,
 } from "@/lib/mentor-contacts-db";
 
@@ -30,7 +30,7 @@ export async function getMentorContact(
 ): Promise<MentorContact | null> {
   if (process.env.DATABASE_URL) {
     await ensureMentorContactsSchema();
-    await seedMentorContactsFromFileIfEmpty();
+    await seedMentorContactsIfEmpty();
     const row = await getMentorContactFromDb(mentorId);
     if (row) return row;
   }

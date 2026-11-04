@@ -9,7 +9,7 @@ export type MentorContact = {
 
 let pool: Pool | null = null;
 let schemaReady: Promise<void> | null = null;
-let seedAttempted = false;
+let seedInFlight: Promise<void> | null = null;
 
 function getPool() {
   if (!process.env.DATABASE_URL) return null;
@@ -92,19 +92,51 @@ const PRIVATE_PATH = path.join(
   "mentor-contacts.private.json"
 );
 
-export async function seedMentorContactsFromFileIfEmpty() {
-  if (seedAttempted) return;
-  seedAttempted = true;
+function parseContactsJson(raw: string): Record<string, MentorContact> | null {
+  try {
+    const parsed = JSON.parse(raw) as Record<string, MentorContact>;
+    if (!parsed || typeof parsed !== "object") return null;
+    return parsed;
+  } catch {
+    return null;
+  }
+}
+
+async function runSeedIfEmpty() {
   const p = getPool();
   if (!p) return;
   await ensureMentorContactsSchema();
   const count = await p.query(`SELECT COUNT(*)::int AS n FROM mentor_contacts`);
   if ((count.rows[0]?.n ?? 0) > 0) return;
+
+  const fromEnv = process.env.MENTOR_CONTACTS_JSON?.trim();
+  if (fromEnv) {
+    const contacts = parseContactsJson(fromEnv);
+    if (contacts && Object.keys(contacts).length > 0) {
+      await upsertMentorContacts(contacts);
+      return;
+    }
+  }
+
   try {
     const raw = await fs.readFile(PRIVATE_PATH, "utf8");
-    const contacts = JSON.parse(raw) as Record<string, MentorContact>;
-    await upsertMentorContacts(contacts);
+    const contacts = parseContactsJson(raw);
+    if (contacts) await upsertMentorContacts(contacts);
   } catch {
-    // Private file not present on this deployment — seed via import script.
+    // Local dev: run npm run import:mentors. Production: set MENTOR_CONTACTS_JSON on Railway.
   }
+}
+
+export async function seedMentorContactsIfEmpty() {
+  if (!seedInFlight) {
+    seedInFlight = runSeedIfEmpty().finally(() => {
+      seedInFlight = null;
+    });
+  }
+  await seedInFlight;
+}
+
+/** @deprecated use seedMentorContactsIfEmpty */
+export async function seedMentorContactsFromFileIfEmpty() {
+  return seedMentorContactsIfEmpty();
 }

@@ -137,7 +137,7 @@ export function MentorshipRequestsPanel() {
                 {r.status === "pending"
                   ? "Waiting for coordinator review."
                   : r.status === "approved" || r.status === "matched"
-                    ? "Approved — if contact is missing, ask coordinators to confirm mentor assignment and database contact seed on production."
+                    ? "Approved — contact details could not be loaded yet. Tap Refresh; if still empty, NVRAA needs to seed mentor contacts on the server."
                     : "Contact details are not shared for this request."}
               </p>
             )}

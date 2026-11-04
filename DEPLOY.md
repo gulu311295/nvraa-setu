@@ -53,14 +53,22 @@ Without secrets, use dashboard deploy on push to `main` (if repo is connected).
 
 Public mentor profiles live in `data/counselling-mentors.json` (no email/phone). Private contacts are generated from `Contact list.xlsx` into **`data/mentor-contacts.private.json`** (gitignored).
 
-After deploy, seed Postgres once (Railway Postgres → **Networking** → enable public URL if needed, then use that URL):
+After deploy, seed mentor contacts (pick one):
+
+**Option A — Railway variable (recommended for production)**
+
+On the **nvraa-setu** web service, set `MENTOR_CONTACTS_JSON` to the compact JSON from `data/mentor-contacts.private.json` (generate locally with `npm run import:mentors`). The app auto-imports into Postgres on first lookup when the table is empty.
+
+**Option B — Postgres push from your machine**
+
+Railway Postgres → **Networking** → enable public URL, then:
 
 ```bash
 npm run import:mentors
 DATABASE_URL="postgresql://..." npm run import:mentors -- --push-db
 ```
 
-On Railway, mentor contacts are read from the `mentor_contacts` table. Until seeded, coordinators can still assign mentors but contact preview may be empty until the table is populated.
+Until seeded, approved students will not see email/phone even when a mentor is assigned.
 
 ## Notes
 
