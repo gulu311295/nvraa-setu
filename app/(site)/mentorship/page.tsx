@@ -1,3 +1,4 @@
+import { NvraaWhatsAppNotice } from "@/components/NvraaWhatsAppNotice";
 import { FieldCategoryPicker } from "@/components/FieldCategoryPicker";
 import { MentorshipFormScroll } from "@/components/MentorshipFormScroll";
 import { MentorshipRequestsPanel } from "@/components/MentorshipRequestsPanel";
@@ -35,6 +36,10 @@ export default async function MentorshipPage({
         Profiles never show email or phone; after your request is approved, the coordinator
         assigns a mentor and contact details appear in your request status below.
       </p>
+
+      <div className="mt-6 max-w-2xl">
+        <NvraaWhatsAppNotice />
+      </div>
 
       <MentorshipRequestsPanel />
       <MentorshipFormScroll mentorId={selectedMentor?.id} />

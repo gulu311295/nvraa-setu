@@ -1,5 +1,6 @@
 import { AuthShell } from "@/components/auth/AuthShell";
 import { MemberSignupForm } from "@/components/MemberSignupForm";
+import { NvraaWhatsAppNotice } from "@/components/NvraaWhatsAppNotice";
 import Link from "next/link";
 
 export default function SignupPage() {
@@ -17,6 +18,9 @@ export default function SignupPage() {
         </>
       }
     >
+      <div className="mb-5">
+        <NvraaWhatsAppNotice />
+      </div>
       <MemberSignupForm />
     </AuthShell>
   );
