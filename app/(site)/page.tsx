@@ -26,9 +26,9 @@ const doors = [
   {
     href: "/scholarship",
     title: "Scholarships & Aid",
-    subtitle: "Schemes, fee support & application help",
+    subtitle: "Schemes + alumni adopt/fund a student",
     icon: "🎖️",
-    steps: ["Browse listings", "Request guidance", "Coordinator matches help"],
+    steps: ["Browse schemes", "Request adoption", "Coordinator matches"],
   },
   {
     href: "/offer",

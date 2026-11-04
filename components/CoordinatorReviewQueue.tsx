@@ -3,7 +3,12 @@ import { listCounsellingMentorsForCoordinator } from "@/lib/counselling-mentors"
 import type { SubmissionRow } from "@/lib/db";
 import { STATUS_LABELS } from "@/lib/submission-status";
 
-const SCHOLARSHIP_TYPES = new Set(["scholarship", "scholarship_post"]);
+const SCHOLARSHIP_TYPES = new Set([
+  "scholarship",
+  "scholarship_post",
+  "scholarship_adopt_request",
+  "scholarship_adopt_offer",
+]);
 
 function isScholarship(formType: string) {
   return SCHOLARSHIP_TYPES.has(formType);
@@ -97,7 +102,7 @@ export function CoordinatorReviewQueue({
             Scholarship requests — review queue
           </h2>
           <p className="mt-1 text-sm text-white/50">
-            Student support requests and alumni/ partner scheme listings from{" "}
+            Scheme requests, new listings, and adopt/fund-a-student offers from{" "}
             <span className="text-white/70">/scholarship</span>. Same approve → match
             workflow as other forms.
           </p>
